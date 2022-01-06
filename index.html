@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý sự cố</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="./lib/fontawesome-5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="./lib/jquery-ui-1.12.1/jquery-ui.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css">
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/override.css">
+  <link rel="stylesheet" href="./css/dialog.css">
+  <link rel="stylesheet" href="./css/input.css">
+  <link rel="stylesheet" href="./css/button.css">
+  <link rel="stylesheet" href="./css/autocomplete.css">
+  <link rel="stylesheet" href="./css/table.css">
+</head>
+
+<body>
+  <div class="overlay" style="display: none">
+    <div id="dialog" class="dialog">
+      <div class="dialog-header">
+        <div class="text-header">Chỉnh sửa thông tin sự cố</div>
+        <i class="dialog-close pointer fas fa-times"></i>
+      </div>
+      <div class="dialog-body">
+
+        <div class="dialog-row">
+          <div class="input-control input-control-col form-group col-6">
+            <label for="txtCode">Mã sự cố</label>
+            <input data-field="code" placeholder="Mã sự cố" class="form-control text-input" type="text">
+          </div>
+          <div class="input-control input-control-col form-group col-6">
+            <label for="txtCode">Loại sự cố</label>
+            <input 
+              data-control="autocomplete" 
+              data-source="incidentType"
+              placeholder="Loại sự cố" 
+              class="form-control text-input" 
+              type="text">
+          </div>
+        </div>
+
+        <div class="dialog-row">
+          <div class="input-control input-control-col form-group col-6">
+            <label for="txtCode">Người báo cáo</label>
+            <input placeholder="Người báo cáo" class="form-control text-input" type="text">
+          </div>
+          <div class="input-control input-control-col form-group col-6">
+            <label for="txtCode">Ngày phát hiện</label>
+            <input placeholder="Ngày phát hiện" class="form-control text-input" type="text">
+          </div>
+        </div>
+
+        <div class="dialog-row">
+          <div class="input-control input-control-col form-group col-12">
+            <label for="txtCode">Tài sản</label>
+            <input placeholder="Tài sản" class="form-control text-input" type="text">
+          </div>
+        </div>
+
+        <div class="dialog-row">
+          <div class="input-control input-control-col form-group col-6">
+            <label for="txtCode">Trạng thái</label>
+            <input data-control="autocomplete" data-source="incidentStatus" placeholder="Trạng thái" class="form-control text-input" type="text">
+          </div>
+          <div class="input-control input-control-col form-group col-6">
+            <label for="txtCode">Trạng thái tài sản</label>
+            <input data-control="autocomplete" data-source="furStatus" placeholder="Trạng thái tài sản" class="form-control text-input" type="text">
+          </div>
+        </div>
+
+        <div class="dialog-row">
+          <div class="input-control input-control-col form-group col-12">
+            <label for="txtCode">Nội dung</label>
+            <textarea rows="3" placeholder="Nội dung" class="form-control text-input" type="text"></textarea>  
+          </div>
+        </div>
+
+      </div>
+      <div class="dialog-footer">
+        <button data-command="Cancel" type="button" class="m-btn btn btn-outline-secondary">Hủy</button>
+        <button data-command="Save" type="button" class="m-btn btn btn-success">Lưu</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="side-bar">
+  </div>
+  <div class="content">
+    <header></header>
+    <div class="main-content">
+      <div class="content-header">
+        <h1 class="header-text">
+          Quản lý sự cố tài sản
+        </h1>
+      </div>
+      <div class="content-body">
+        <div class="content-toolbar">
+
+          <div class="row-item">
+            <div class="input-control form-group">
+              <label for="txtCode">Mã tài sản</label>
+              <input placeholder="Mã tài sản" class="form-control text-input" type="text">
+            </div>
+            <div class="input-control form-group">
+              <label for="txtCode">Tên tài sản</label>
+              <input placeholder="Tên tài sản" class="form-control text-input" type="text">
+            </div>
+          </div>
+
+          <div class="row-item">
+            <div class="input-control form-group">
+              <label for="txtCode">Mã sự cố</label>
+              <input placeholder="Mã sự cố" class="form-control text-input" type="text">
+            </div>
+            <div class="input-control form-group">
+              <label for="txtCode">Loại sự cố</label>
+              <input placeholder="Loại sự cố" class="form-control text-input" type="text">
+            </div>
+          </div>
+
+          <div class="row-item">
+            <div class="input-control form-group">
+              <label for="txtCode">Trạng thái</label>
+              <input placeholder="Trạng thái" class="form-control text-input" type="text">
+            </div>
+
+            <button type="button" class="m-btn btn btn-success">Tìm kiếm</button>
+
+            <button type="button" id="export" class="m-btn btn btn-primary">Xuất báo cáo</button>
+
+          </div>
+
+        </div>
+
+        <div class="content-table">
+          <table 
+            id="table"
+            data-toggle="table"
+            data-pagination="true"
+            data-page-size="5"
+          >
+            <thead>
+              <tr>
+                <th data-width="50" data-checkbox="true"></th>
+                <th data-field="code" data-width="100">Mã tài sản</th>
+                <th data-field="name">Tên tài sản</th>
+                <th data-field="type" data-width="150">Loại sự cố</th>
+                <th data-field="status" data-width="150">Trạng thái</th>
+                <th data-field="content" data-width="200">Nội dung</th>
+                <th data-field="_action" data-formatter="renderActionBtn" data-width="80">Hành động</th>
+              </tr>
+            </thead>
+            
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+  <!-- <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script> -->
+  <script src="./lib/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+  <script src="./js/index.js"></script>
+  <script src="./js/dialog.js"></script>
+</body>
+
+</html>

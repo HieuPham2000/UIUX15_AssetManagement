@@ -1,0 +1,87 @@
+.content-table {
+  margin: 5px 15px;
+}
+
+.bs-checkbox {
+  vertical-align: unset !important;
+  padding: unset !important;
+}
+
+.bs-checkbox .th-inner {
+  height: 50px;
+}
+
+.bs-checkbox .th-inner label {
+  height: unset;
+}
+
+.bs-checkbox .th-inner  label span {
+  transform: translateY(0) translateX(-50%);
+}
+
+.bs-checkbox label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 22px;
+  height: 50px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.bs-checkbox label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.bs-checkbox label span {
+  position: absolute;
+  transform: translateX(-50%) translateY(-50%);
+  top: 50%;
+  left: 50%;
+  height: 20px;
+  width: 20px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 2px;
+}
+
+/* On mouse-over, add a grey background color */
+.bs-checkbox label:hover input ~ span {
+  border-color: #2196F3;
+}
+
+/* When the checkbox is checked, add a blue background */
+.bs-checkbox label input:checked ~ span {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.bs-checkbox label span:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.bs-checkbox label input:checked ~ span:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.bs-checkbox label span:after {
+  transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+}

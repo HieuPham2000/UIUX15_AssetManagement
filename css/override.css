@@ -1,0 +1,11 @@
+*:focus {
+  box-shadow: none !important;
+}
+
+.ui-helper-hidden-accessible {
+  display: none;
+}
+
+.ui-menu {
+  z-index: 10;
+}

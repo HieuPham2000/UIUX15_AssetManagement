@@ -1,0 +1,76 @@
+.overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+  z-index: 5;
+}
+
+.dialog {
+  background-color: #fff;
+  padding: 0px 15px 0px 15px;
+  min-width: 850px;
+  min-height: calc(100% - 10px);
+  display: flex;
+  flex-direction: column;
+}
+
+.dialog .dialog-header {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dialog .dialog-header .text-header {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.dialog .dialog-header .dialog-close {
+  font-size: 24px;
+}
+
+.dialog .dialog-body {
+  flex: 1;
+  margin: 12px 0px;
+}
+
+.dialog .dialog-footer {
+  display: flex;
+  height: 60px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.dialog .dialog-footer .m-btn  {
+  margin-left: 8px;
+}
+
+.dialog-row {
+  display: flex;
+}
+
+.dialog .input-control .text-input {
+  width: 100%;
+}
+
+.dialog .input-control.input-control-col {
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+}
+
+.dialog .input-control.input-control-col:not(:first-child) {
+  padding-left: 15px;
+}
+
+.dialog .input-control.input-control-col label {
+  text-align: left;
+  margin-bottom: 4px;
+}
