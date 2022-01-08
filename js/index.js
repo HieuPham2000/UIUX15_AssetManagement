@@ -20,35 +20,70 @@ class FormBase {
       {
         code: "TS01",
         name: "Máy lạnh",
-        type: "Hỏng hóc",
+        incidentType: "Hỏng hóc",
         status: "Đang xử lý",
         content: "Hỏng nặng"
       },
       {
         code: "TS01",
         name: "Máy lạnh",
-        type: "Hỏng hóc",
+        incidentType: "Hỏng hóc",
         status: "Đang xử lý",
         content: "Hỏng nặng"
       },
       {
         code: "TS01",
         name: "Máy lạnh",
-        type: "Hỏng hóc",
+        incidentType: "Hỏng hóc",
         status: "Đang xử lý",
         content: "Hỏng nặng"
       },
       {
         code: "TS01",
         name: "Máy lạnh",
-        type: "Hỏng hóc",
+        incidentType: "Hỏng hóc",
         status: "Đang xử lý",
         content: "Hỏng nặng"
       },
       {
-        code: "TS01",
+        code: "TS05",
         name: "Máy lạnh",
-        type: "Hỏng hóc",
+        incidentType: "Hỏng hóc",
+        status: "Đang xử lý",
+        content: "Hỏng nặng"
+      },
+      {
+        code: "TS06",
+        name: "Máy lạnh",
+        incidentType: "Hỏng hóc",
+        status: "Đang xử lý",
+        content: "Hỏng nặng"
+      },
+      {
+        code: "TS07",
+        name: "Máy lạnh",
+        incidentType: "Hỏng hóc",
+        status: "Đang xử lý",
+        content: "Hỏng nặng"
+      },
+      {
+        code: "TS08",
+        name: "Máy lạnh",
+        incidentType: "Hỏng hóc",
+        status: "Đang xử lý",
+        content: "Hỏng nặng"
+      },
+      {
+        code: "TS09",
+        name: "Máy lạnh",
+        incidentType: "Hỏng hóc",
+        status: "Đang xử lý",
+        content: "Hỏng nặng"
+      },
+      {
+        code: "TS10",
+        name: "Máy lạnh",
+        incidentType: "Hỏng hóc",
         status: "Đang xử lý",
         content: "Hỏng nặng"
       },
@@ -61,12 +96,13 @@ class FormBase {
 
     me.incidentStatus = [
       "Đang xử lý",
-      "Chờ xử lý"
+      "Chờ xử lý",
+      "Đã xử lý"
     ];
 
     me.furStatus = [
-      "Đang sửa chữa",
-      "Đang tìm kiếm"
+      "Đang sử dụng",
+      "Sẵn sàng sử dụng"
     ]
   }
 
@@ -77,11 +113,22 @@ class FormBase {
     let me = this;
     me.$table.bootstrapTable({
       formatShowingRows: function (pageFrom, pageTo, totalRows) {
-        return `Hiển thị <b>${pageTo - pageFrom + 1}/${totalRows}</b>`
+        return `Hiển thị <b>${pageTo - pageFrom + 1}/${me.data.length}</b>`
       }
     });
 
     me.$table.bootstrapTable('load', me.data);
+  }
+
+  search(dataSearch) {
+    let me = this;
+    let cloneData = $.extend([], me.data);
+    let search = {};
+    for (let key in dataSearch) {
+      let filter = cloneData.filter(x => x[key].includes(dataSearch[key]));
+      search[key] = filter.map(x => x[key]);
+    }
+    me.$table.bootstrapTable('filterBy', search);
   }
 
   /**
@@ -89,12 +136,21 @@ class FormBase {
    */
   initEvent() {
     let me = this;
+
     me.$table.on("click", "[data-command]", function () {
       let command = $(this).data("command");
       let row = $(this).closest("tr");
       let data = me.$table.bootstrapTable("getData");
       let dataRow = data[row.data("index")];
       me.itemGridActionClick(command, dataRow, data, row, me.$table);
+    });
+
+    $("[data-control=searchControl]").click(function() {
+      let dataSearch = {};
+      $("input[data-search-field]").each((index, item) => {
+        dataSearch[$(item).data("search-field")] = $(item).val();
+      });
+      me.search(dataSearch);
     });
   }
 

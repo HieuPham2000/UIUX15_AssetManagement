@@ -60,17 +60,6 @@
   width: 100%;
 }
 
-.dialog .input-control.input-control-col {
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 0;
-}
-
 .dialog .input-control.input-control-col:not(:first-child) {
   padding-left: 15px;
-}
-
-.dialog .input-control.input-control-col label {
-  text-align: left;
-  margin-bottom: 4px;
 }

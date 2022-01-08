@@ -40,6 +40,7 @@
             <label for="txtCode">Loại sự cố</label>
             <input 
               data-control="autocomplete" 
+              data-field="incidentType"
               data-source="incidentType"
               placeholder="Loại sự cố" 
               class="form-control text-input" 
@@ -107,11 +108,11 @@
           <div class="row-item">
             <div class="input-control form-group">
               <label for="txtCode">Mã tài sản</label>
-              <input placeholder="Mã tài sản" class="form-control text-input" type="text">
+              <input data-search-field="code" placeholder="Mã tài sản" class="form-control text-input" type="text">
             </div>
             <div class="input-control form-group">
               <label for="txtCode">Tên tài sản</label>
-              <input placeholder="Tên tài sản" class="form-control text-input" type="text">
+              <input data-search-field="name" placeholder="Tên tài sản" class="form-control text-input" type="text">
             </div>
           </div>
 
@@ -122,17 +123,25 @@
             </div>
             <div class="input-control form-group">
               <label for="txtCode">Loại sự cố</label>
-              <input placeholder="Loại sự cố" class="form-control text-input" type="text">
+              <input
+                data-control="autocomplete"
+                data-source="incidentType"
+                data-search-field="incidentType"
+                placeholder="Loại sự cố" class="form-control text-input" type="text">
             </div>
           </div>
 
           <div class="row-item">
             <div class="input-control form-group">
               <label for="txtCode">Trạng thái</label>
-              <input placeholder="Trạng thái" class="form-control text-input" type="text">
+              <input 
+                data-control="autocomplete"
+                data-source="incidentStatus"
+                data-search-field="status"
+                placeholder="Trạng thái" class="form-control text-input" type="text">
             </div>
 
-            <button type="button" class="m-btn btn btn-success">Tìm kiếm</button>
+            <button data-control="searchControl" type="button" class="m-btn btn btn-success">Tìm kiếm</button>
 
             <button type="button" id="export" class="m-btn btn btn-primary">Xuất báo cáo</button>
 
@@ -152,7 +161,7 @@
                 <th data-width="50" data-checkbox="true"></th>
                 <th data-field="code" data-width="100">Mã tài sản</th>
                 <th data-field="name">Tên tài sản</th>
-                <th data-field="type" data-width="150">Loại sự cố</th>
+                <th data-field="incidentType" data-width="150">Loại sự cố</th>
                 <th data-field="status" data-width="150">Trạng thái</th>
                 <th data-field="content" data-width="200">Nội dung</th>
                 <th data-field="_action" data-formatter="renderActionBtn" data-width="80">Hành động</th>

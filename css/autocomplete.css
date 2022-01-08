@@ -1,6 +1,13 @@
-input[data-control="autocomplete"]+i {
+.input-control-col input[data-control="autocomplete"]+i {
   position: absolute;
   right: 8px;
   bottom: 50%;
   transform: translateY(150%);
+}
+
+input[data-control="autocomplete"]+i {
+  position: absolute;
+  right: 8px;
+  bottom: 50%;
+  transform: translateY(50%);
 }
