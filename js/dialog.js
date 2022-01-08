@@ -1,8 +1,8 @@
 class BaseDialog {
 
   constructor() {
-    this.initEvent();
     this.selector = ".overlay";
+    this.initEvent();
   }
 
   /**
@@ -11,16 +11,38 @@ class BaseDialog {
   initEvent() {
     let me = this;
     
-    $(".dialog-close").click(function(){
+    me.findControl(".dialog-close").click(function(){
       me.hideForm();
     });
 
-    $("[data-command]").click(function(){
+    me.findControl("[data-command]").click(function(){
       me.hideForm();
     });
 
   }
 
+  /**
+   * Lưu form
+   */
+  saveAction() {
+    let me = this;
+
+    me.hideForm();
+  }
+
+  /**
+   * Giới hạn tìm kiếm trong form
+   * @param {*} selector 
+   * @returns 
+   */
+  findControl(selector) {
+    let me = this;
+    return $(me.selector).find(selector);
+  }
+
+  /**
+   * Ẩn form
+   */
   hideForm() {
     let me = this;
     $(me.selector).hide();
@@ -28,7 +50,4 @@ class BaseDialog {
 
 }
 
-var oDialog;
-$(document).ready(function () {
-  oDialog = new BaseDialog();
-});
+var oDialog = new BaseDialog();

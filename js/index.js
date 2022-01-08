@@ -152,6 +152,25 @@ class FormBase {
       });
       me.search(dataSearch);
     });
+
+    $("[data-control=toggleColumn]").click(function() {
+      let options = me.$table.bootstrapTable("getOptions");
+      let toggleColumn = options.columns[0].filter(x => x.toggle);
+
+      let togglePopup = $(".toggle-popup");
+      let toggleContent = togglePopup.find('.toggle-content');
+
+      toggleContent.html('');
+      toggleColumn.forEach(x => {
+        toggleContent.append(`
+        <div class="toggle-row">
+          <input data-field="${x.field}" class="toggle-checkbox" id="${x.field}" ${x.visible ? 'checked' : ''} type="checkbox">
+          <label class="toggle-label" for="${x.field}">${x.title}</label>
+        </div>`)
+      });
+
+      togglePopup.dialog();
+    })
   }
 
   /**

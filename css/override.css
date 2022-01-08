@@ -9,3 +9,13 @@
 .ui-menu {
   z-index: 10;
 }
+
+.ui-dialog .ui-dialog-titlebar {
+  border: none;
+  background-color: #fff;
+}
+
+.ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close {
+  border: none;
+  background-color: #fff;
+}

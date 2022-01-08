@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="./css/button.css">
   <link rel="stylesheet" href="./css/autocomplete.css">
   <link rel="stylesheet" href="./css/table.css">
+  <link rel="stylesheet" href="./css/toggle-popup.css">
 </head>
 
 <body>
@@ -92,6 +93,14 @@
     </div>
   </div>
 
+  <div title="Ẩn/ hiện cột" class="toggle-popup" style="display: none">
+    <div class="toggle-content"></div>
+    <div class="toggle-footer">
+      <button data-command="Cancel" type="button" class="m-btn btn btn-outline-secondary">Hủy</button>
+      <button data-command="Save" type="button" class="m-btn btn btn-success">Lưu</button>
+    </div>
+  </div>
+
   <div class="side-bar">
   </div>
   <div class="content">
@@ -145,6 +154,8 @@
 
             <button type="button" id="export" class="m-btn btn btn-primary">Xuất báo cáo</button>
 
+            <i data-control="toggleColumn" class="setting-button pointer fas fa-cog"></i>
+
           </div>
 
         </div>
@@ -161,9 +172,9 @@
                 <th data-width="50" data-checkbox="true"></th>
                 <th data-field="code" data-width="100">Mã tài sản</th>
                 <th data-field="name">Tên tài sản</th>
-                <th data-field="incidentType" data-width="150">Loại sự cố</th>
-                <th data-field="status" data-width="150">Trạng thái</th>
-                <th data-field="content" data-width="200">Nội dung</th>
+                <th data-toggle="true" data-field="incidentType" data-width="150">Loại sự cố</th>
+                <th data-toggle="true" data-field="status" data-width="150">Trạng thái</th>
+                <th data-toggle="true" data-field="content" data-width="200">Nội dung</th>
                 <th data-field="_action" data-formatter="renderActionBtn" data-width="80">Hành động</th>
               </tr>
             </thead>
@@ -185,6 +196,7 @@
   <script src="./lib/jquery-ui-1.12.1/jquery-ui.min.js"></script>
   <script src="./js/index.js"></script>
   <script src="./js/dialog.js"></script>
+  <script src="./js/toggle-column.js"></script>
 </body>
 
 </html>
