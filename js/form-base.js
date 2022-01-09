@@ -207,6 +207,7 @@ class FormBase {
      */
     me.$table.updateRow = function(row) {
       this.bootstrapTable('updateRow', {index: row.index, row: row});
+      search();
     }
 
     /**
@@ -227,13 +228,14 @@ class FormBase {
       me.itemGridActionClick(command, dataRow, data, row, me.$table);
     });
 
-    me.findControl("[data-control=searchControl]").click(function() {
+    let search = function() {
       let dataSearch = {};
       me.findControl("input[data-search-field]").each((index, item) => {
         dataSearch[$(item).data("search-field")] = $(item).val();
       });
       me.search(dataSearch);
-    });
+    }
+    me.findControl("[data-control=searchControl]").click(search);
 
     me.findControl("[data-control=toggleColumn]").click(function() {
       let options = me.$table.bootstrapTable("getOptions");
@@ -257,6 +259,10 @@ class FormBase {
 
   search(dataSearch) {
     let me = this;
+    if (!dataSearch) {
+      me.$table.bootstrapTable('loadData', me.data);
+      return;
+    }
     let cloneData = $.extend([], me.data);
     let search = {};
     for (let key in dataSearch) {
