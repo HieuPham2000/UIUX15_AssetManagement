@@ -1,8 +1,16 @@
-class BaseDialog {
+class BaseDialog extends FormBase {
 
   constructor() {
-    this.selector = ".overlay";
-    this.initEvent();
+    super();
+  }
+
+  /**
+   * Giá trị ban đầu
+   */
+  initProperty() {
+    let me = this;
+    me.parent = oFormBase;
+    me.selector = ".dialog";
   }
 
   /**
@@ -15,8 +23,12 @@ class BaseDialog {
       me.hideForm();
     });
 
-    me.findControl("[data-command]").click(function(){
+    me.findControl("[data-command=Cancel]").click(function(){
       me.hideForm();
+    });
+
+    me.findControl("[data-command=Save]").click(function(){
+      me.saveAction();
     });
 
   }
@@ -27,17 +39,18 @@ class BaseDialog {
   saveAction() {
     let me = this;
 
-    me.hideForm();
-  }
+    if (!me.validate()) {
+      me.showToast(Constants.Validate);
+      return;
+    }
 
-  /**
-   * Giới hạn tìm kiếm trong form
-   * @param {*} selector 
-   * @returns 
-   */
-  findControl(selector) {
-    let me = this;
-    return $(me.selector).find(selector);
+    let saveData = $.extend(me.parent.recordRow, me.getFormData())
+
+    me.parent.$table.updateRow(saveData);
+
+    me.showToast(Constants.SaveSuccess)
+
+    me.hideForm();
   }
 
   /**
@@ -45,7 +58,7 @@ class BaseDialog {
    */
   hideForm() {
     let me = this;
-    $(me.selector).hide();
+    $(me.selector).parent().hide();
   }
 
 }

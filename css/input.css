@@ -28,3 +28,18 @@
   text-align: left;
   margin-bottom: 4px;
 }
+
+.input-control label.error {
+  color: red;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.input-control .text-input.error {
+  border-color: red;
+  color: red;
+}
+
+.input-control .text-input.error::placeholder {
+  opacity: 0;
+}

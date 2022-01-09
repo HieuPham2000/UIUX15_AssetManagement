@@ -1,9 +1,16 @@
-class ToggleColumn {
+class ToggleColumn extends FormBase {
 
   constructor() {
-    this.selector = ".toggle-popup";
+    super();
     this.parent = oFormBase;
-    this.initEvent();
+  }
+
+  /**
+   * 
+   */
+  initProperty() {
+    let me = this;
+    me.selector = ".toggle-popup";
   }
 
   /**
@@ -47,16 +54,6 @@ class ToggleColumn {
       
       me.hideForm();
     }
-
-  /**
-   * Giới hạn tìm kiếm trong form
-   * @param {*} selector 
-   * @returns 
-   */
-   findControl(selector) {
-    let me = this;
-    return $(me.selector).find(selector);
-  }
 
   /**
    * Ẩn form
