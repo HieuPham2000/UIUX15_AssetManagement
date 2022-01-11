@@ -22,10 +22,11 @@
   <link rel="stylesheet" href="./css/autocomplete.css">
   <link rel="stylesheet" href="./css/table.css">
   <link rel="stylesheet" href="./css/toggle-popup.css">
+  <link rel="stylesheet" href="./css/popup.css">
 </head>
 
 <body>
-  <div class="overlay" style="display: none">
+  <div id="dialog-overlay" class="overlay" style="display: none">
     <form id="dialog" class="dialog">
       <div class="dialog-header">
         <div class="text-header">Chỉnh sửa thông tin sự cố</div>
@@ -92,6 +93,22 @@
         <button data-command="Save" type="button" class="m-btn btn btn-success">Lưu</button>
       </div>
     </form>
+  </div>
+
+  <div id="msg-popup-overlay" class="overlay" style="display: none">
+    <div class="popup">
+      <div class="popup-header">
+        <div class="text-header">Thông báo</div>
+        <i class="popup-close pointer fas fa-times"></i>
+      </div>
+      <div class="popup-body">
+        Bạn có chắc muốn xóa bản ghi này không?
+      </div>
+      <div class="popup-footer">
+        <button data-command="Cancel" type="button" class="m-btn btn btn-outline-secondary">Hủy</button>
+        <button data-command="Save" type="button" class="m-btn btn btn-success">Lưu</button>
+      </div>
+    </div>
   </div>
 
   <div title="Ẩn/ hiện cột" class="toggle-popup" style="display: none">
@@ -199,6 +216,7 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
+  <script src="./js/popup.js"></script>
   <script src="./js/constant.js"></script>
   <script src="./js/form-base.js"></script>
   <script src="./js/dialog.js"></script>

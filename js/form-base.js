@@ -78,7 +78,8 @@ class FormBase {
   initProperty() {
     let me = this;
     me.$table = me.findControl('#table');
-    me.$dialog = me.findControl('.overlay');
+    me.$dialog = me.findControl('#dialog-overlay');
+    me.$msgBox = me.findControl('#msg-popup-overlay');
     me.data = [
       {
         code: "TS01",
@@ -332,6 +333,7 @@ class FormBase {
         })
         break;
       case "Delete":
+        showPopup(() => console.log('Xóa'))
         break;
       default:
         break;

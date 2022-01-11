@@ -1,0 +1,44 @@
+.popup {
+  background-color: #fff;
+  padding: 0px 15px 0px 15px;
+  min-width: 500px;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.popup .popup-header {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.popup .popup-header .text-header {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.popup .popup-header .popup-close {
+  font-size: 24px;
+}
+
+.popup .popup-body {
+  flex: 1;
+  margin: 12px 0px;
+}
+
+.popup .popup-footer {
+  display: flex;
+  height: 60px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.popup .popup-body {
+  font-weight: 600;
+}
+
+.popup .popup-footer .m-btn  {
+  margin-left: 8px;
+}
