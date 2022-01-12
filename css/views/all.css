@@ -1,0 +1,24 @@
+@import url("../../lib/jquery-ui-1.12.1/jquery-ui.min.css");
+@import url("https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css");
+@import url("../../plugins/fontawesome-free/css/all.min.css");
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback");
+@import url("https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css");
+@import url("../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css");
+@import url("../../plugins/icheck-bootstrap/icheck-bootstrap.min.css");
+@import url("../../plugins/jqvmap/jqvmap.min.css");
+@import url("../../dist/css/adminlte.min.css");
+@import url("../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css");
+@import url("../../plugins/daterangepicker/daterangepicker.css");
+@import url("../../plugins/summernote/summernote-bs4.min.css");
+
+@import url("../override.css");
+@import url("../autocomplete.css");
+@import url("../button.css");
+@import url("../dialog.css");
+@import url("../input.css");
+@import url("../popup.css");
+@import url("../table.css");
+@import url("../toggle-popup.css");
+
+@import url("./custom.css");
+

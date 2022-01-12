@@ -76,7 +76,7 @@
     return 'Auto Refresh'
   },
   formatExport () {
-    return 'Export data'
+    return 'Xuất dữ liệu'
   },
   formatJumpTo () {
     return 'GO'
