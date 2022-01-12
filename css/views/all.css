@@ -10,6 +10,8 @@
 @import url("../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css");
 @import url("../../plugins/daterangepicker/daterangepicker.css");
 @import url("../../plugins/summernote/summernote-bs4.min.css");
+@import url("../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css");
+@import url("../../plugins/toastr/toastr.min.css");
 
 @import url("../override.css");
 @import url("../autocomplete.css");
