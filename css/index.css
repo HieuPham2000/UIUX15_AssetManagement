@@ -55,6 +55,9 @@ body {
   flex: 1;
   background-color: #fff;
   border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .content-body .content-table .action-grid {

@@ -1,0 +1,7 @@
+.manage-asset-use-request .row-item .input-control {
+  margin-left: 10px;
+}
+
+.manage-asset-use-request .row-item .input-control label {
+  min-width: 150px;
+}

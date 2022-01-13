@@ -267,7 +267,7 @@ class FormBase {
     let cloneData = $.extend([], me.data);
     let search = {};
     for (let key in dataSearch) {
-      let filter = cloneData.filter(x => x[key].includes(dataSearch[key]));
+      let filter = cloneData.filter(x => x[key]?.includes(dataSearch[key]));
       search[key] = filter.map(x => x[key]);
     }
     me.$table.bootstrapTable('filterBy', search);
@@ -354,7 +354,8 @@ class FormBase {
       if (tag == "INPUT" || tag == "TEXTAREA") {
         if ($item.prop("type") == "checkbox") {
           formData[$item.data("field")] = $item.prop("checked");
-        } else {
+        }
+        else {
           formData[$item.data("field")] = $item.val();
         }
       }
@@ -398,5 +399,4 @@ function renderActionBtn() {
   return `<div class="action-grid">${editBtn + deleteBtn}</div>`;
 }
 
-var oFormBase = new FormBase;
 var app = this;

@@ -56,9 +56,27 @@ class BaseDialog extends FormBase {
   /**
    * Ẩn form
    */
-  hideForm() {
+  async hideForm() {
     let me = this;
+    if (me.checkChange()) {
+      await showPopupMsg('Dữ liệu đã thay đổi, bạn có muốn lưu không?',  me.saveAction.bind(me));
+    }
     $(me.selector).parent().hide();
+
+    
+  }
+
+  checkChange() {
+    let me = this;
+    let formData = me.getFormData();
+    let originalData = me.parent.recordRow;
+
+    for (let key in formData) {
+      if (formData[key] != originalData[key]) {
+        return true;
+      }
+    }
+    return false;
   }
 
 }

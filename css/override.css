@@ -19,3 +19,7 @@ input:focus {
   border: none;
   background-color: #fff;
 }
+
+.page-list .btn-group {
+  display: none !important;
+}
