@@ -33,3 +33,9 @@
 .main-footer {
     margin-left: 0 !important;
 }
+
+thead {
+    /* position: absolute;
+    top: 0;
+    left: 0; */
+}
