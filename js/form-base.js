@@ -221,7 +221,7 @@ class FormBase {
 
     me.$table.bootstrapTable('load', me.data);
 
-    me.$table.on("click", "[data-command]", function () {
+    me.$table.off("click").on("click", "[data-command]", function () {
       let command = $(this).data("command");
       let row = $(this).closest("tr");
       let data = me.$table.getData();
