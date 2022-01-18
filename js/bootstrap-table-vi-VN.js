@@ -9,14 +9,17 @@
     return 'Đang tải'
   },
   formatRecordsPerPage (pageNumber) {
-    return `${pageNumber} bản ghi mỗi trang`
+    return `${pageNumber} bản ghi/trang`
   },
   formatShowingRows (pageFrom, pageTo, totalRows, totalNotFiltered) {
     if (totalNotFiltered !== undefined && totalNotFiltered > 0 && totalNotFiltered > totalRows) {
-      return `Hiển thị từ trang ${pageFrom} đến ${pageTo} của ${totalRows} bảng ghi (filtered from ${totalNotFiltered} total rows)`
+      return `Hiển thị <b>${pageFrom}-${pageTo}/${totalRows}</b> bản ghi (filtered from ${totalNotFiltered} total rows)`
     }
 
-    return `Hiển thị từ trang ${pageFrom} đến ${pageTo} của ${totalRows} bảng ghi`
+    if(pageFrom == pageTo) {
+      return `Hiển thị <b>${pageFrom}/${totalRows}</b> bản ghi`
+    }
+    return `Hiển thị <b>${pageFrom}-${pageTo}/${totalRows}</b> bản ghi`
   },
   formatSRPaginationPreText () {
     return 'previous page'
@@ -40,19 +43,19 @@
     return 'Không có dữ liệu'
   },
   formatPaginationSwitch () {
-    return 'Hide/Show pagination'
+    return 'Ẩn/ hiện thanh phân trang'
   },
   formatPaginationSwitchDown () {
-    return 'Show pagination'
+    return 'Hiện thanh phân trang'
   },
   formatPaginationSwitchUp () {
-    return 'Hide pagination'
+    return 'Ẩn thanh phân trang'
   },
   formatRefresh () {
-    return 'Refresh'
+    return 'Làm mới'
   },
   formatToggle () {
-    return 'Toggle'
+    return 'Ẩn/ hiện'
   },
   formatToggleOn () {
     return 'Show card view'
@@ -61,16 +64,16 @@
     return 'Hide card view'
   },
   formatColumns () {
-    return 'Columns'
+    return 'Ẩn/hiện cột'
   },
   formatColumnsToggleAll () {
-    return 'Toggle all'
+    return 'Ẩn/ hiện tất cả'
   },
   formatFullscreen () {
-    return 'Fullscreen'
+    return 'Chế độ toàn màn hình'
   },
   formatAllRows () {
-    return 'All'
+    return 'Tất cả'
   },
   formatAutoRefresh () {
     return 'Auto Refresh'

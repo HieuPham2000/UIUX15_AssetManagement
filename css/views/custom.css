@@ -50,3 +50,55 @@ a.nav-link {
   font-size: 3rem;
 }
 
+
+/*  */
+/*  */
+.content-wrapper .content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.content > .container-fluid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.my-row-container {
+  position: relative;
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.card .card-header .nav-tabs .nav-item {
+  font-size: 1.2rem;
+}
+
+.my-card > .card-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+
+/* label */
+.input-control label {
+  margin-right: 10px;
+}
+
+/*  */
+.action-grid i {
+  color: #2196F3;
+  cursor: pointer;
+}
+
+/*  */
+
+.page-list .btn-group {
+  display: initial !important;
+}

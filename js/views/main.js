@@ -11,7 +11,9 @@ $(function() {
   //     title: 'Tính năng đang phát triển.'
   //   })
   // });
-  $('.dev-feat').click(function() {
+  $('.dev-feat').click(function(event) {
+    event.preventDefault();
+    
     toastr.info("Tính năng đang phát triển.");
   });
 });
