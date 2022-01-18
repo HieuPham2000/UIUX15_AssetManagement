@@ -278,7 +278,25 @@ class FormBase {
    */
   initEvent() {
     let me = this;
+    me.findControl('[data-single-command]').click(function() {
+      let command = $(this).data('single-command');
+      me.singleItemClick(command)
+    });
+  }
 
+  /**
+   * Hàm xử lý sự kiện theo command
+   * @param {string} command command
+   */
+  singleItemClick(command) {
+    let me = this;
+    switch(command) {
+      case "export":
+        me.$table.tableExport({type:'excel'});
+        break;
+      default:
+        break;
+    }
   }
 
   /**
