@@ -351,32 +351,32 @@
     <div id="dialog-overlay" class="overlay" style="display: none">
       <form id="dialog" class="dialog">
         <div class="dialog-header">
-          <div class="text-header">Chỉnh sửa thông tin sự cố</div>
+          <div class="text-header">Chỉnh sửa thông tin tài sản</div>
           <i class="dialog-close pointer fas fa-times"></i>
         </div>
         <div class="dialog-body">
 
           <div class="dialog-row">
             <div class="input-control input-control-col form-group col-6">
-              <label for="txtCode">Mã sự cố</label>
-              <input required data-field="code" placeholder="Mã sự cố" class="form-control text-input" type="text">
+              <label for="txtCodeEdit">Mã tài sản <span class="required">(*)</span></label>
+              <input id="txtCodeEdit" required data-field="code" placeholder="Mã tài sản" class="form-control text-input" type="text">
             </div>
             <div class="input-control input-control-col form-group col-6">
-              <label for="txtCode">Loại sự cố</label>
-              <input data-control="autocomplete" data-field="incidentType" data-source="incidentType"
-                placeholder="Loại sự cố" class="form-control text-input" type="text">
+              <label for="cboGroupEdit">Nhóm tài sản <span class="required">(*)</span></label>
+              <input id="cboGroupEdit" required data-control="autocomplete" data-field="group" data-source="cboGroupSource"
+                placeholder="Nhóm tài sản" class="form-control text-input" type="text">
             </div>
           </div>
 
           <div class="dialog-row">
             <div class="input-control input-control-col form-group col-6">
-              <label for="txtCode">Người báo cáo</label>
-              <input data-field="foundedBy" placeholder="Người báo cáo" class="form-control text-input" type="text">
+              <label for="txtNameEdit">Tên tài sản <span class="required">(*)</span></label>
+              <input id="txtNameEdit" required data-field="name" placeholder="Tên tài sản" class="form-control text-input" type="text">
             </div>
             <div class="input-control input-control-col form-group col-6">
-              <label for="txtCode">Ngày phát hiện</label>
-              <input data-field="foundedDate" placeholder="Ngày phát hiện" class="form-control text-input"
-                type="text">
+              <label for="cboStatusEdit">Trạng thái <span class="required">(*)</span></label>
+              <input id="cboStatusEdit" required data-control="autocomplete" data-field="status" data-source="cboStatusSource"
+                placeholder="Trạng thái" class="form-control text-input" type="text">
             </div>
           </div>
 

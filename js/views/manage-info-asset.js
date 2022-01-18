@@ -3,6 +3,49 @@ class ManageInfoAsset extends FormBase {
   constructor() {
     super();
     this.fileName = "asset-info";
+    this.myInit();
+  }
+
+  getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+    return false;
+  };
+
+  myInit() {
+    let me = this;
+    let status = this.getUrlParameter("status");
+    let myStatusValue = null;
+    switch(status) {
+      case "available":
+        myStatusValue = "Sẵn sàng sử dụng";
+        break;
+      case "using":
+        myStatusValue = "Đang sử dụng";
+        break;
+      case "broken":
+        myStatusValue = "Hỏng hóc";
+        break;
+      case "sold":
+        myStatusValue = "Thanh lý";
+        break;
+    }
+
+    if(myStatusValue) {
+      me.findControl("#cboStatus").val(myStatusValue);
+      me.findControl("[data-control=searchControl]").trigger("click");
+    }
+    
   }
 
   /**
@@ -42,11 +85,12 @@ class ManageInfoAsset extends FormBase {
 
     me.findControl("#selectExportDataType").selectmenu({
       change: function( event, data ) {
+        let value = $(this).val(); 
         me.$table.bootstrapTable('refreshOptions', {
-          exportDataType: $(this).val(),
+          exportDataType: value,
           exportOptions: {
             fileName: function() {
-              return `${me.fileName}_${$(this).val()}`;
+              return `${me.fileName}_${value}`;
             }
           },
         });
@@ -70,6 +114,7 @@ class ManageInfoAsset extends FormBase {
           return `${me.fileName}_all`;
         }
       },
+      buttons: me.handleTableCustomButtons.bind(me)
     });
     
 
@@ -124,7 +169,89 @@ class ManageInfoAsset extends FormBase {
     me.$table.bootstrapTable('resetView');
   }
 
-  
+
+  /**
+   * Hàm xử lý sự kiện button trên bảng
+   * @param {string} command command
+   * @param {object} dataRow dữ liệu dòng
+   * @param {array} data dữ liệu bảng
+   * @param {el} row element dòng
+   * @param {el} grid element bảng
+   */
+   itemGridActionClick(command, dataRow, data, row, grid) {
+    let me = this;
+    switch (command) {
+      case "Edit":
+        me.$dialog.show();
+        me.recordRow = dataRow;
+        me.$dialog.find("[data-field]").each((index, el) => {
+          let field = $(el).data("field");
+          $(el).val(dataRow[field])
+        })
+        break;
+      case "Delete":
+        me.deleteAction(dataRow);
+        break;
+      default:
+        break;
+    }
+  }
+
+  handleTableCustomButtons() {
+    let me = this;
+    return {
+      btnDelete: {
+        text: 'Xóa bản ghi được chọn',
+        icon: 'fa-trash',
+        event: function () {
+          me.deleteManyAction();
+        },
+        attributes: {
+          title: 'Xóa bản ghi được chọn'
+        }
+      },
+    }
+  }
+
+  getIndexSelections() {
+    let me = this;
+    return $.map(me.$table.bootstrapTable('getSelections'), function (row) {
+      return row.index
+    })
+  }
+
+  deleteAction(dataRow) {
+    let me = this;
+    if(dataRow) {
+      let deleteFunc = (code) => {
+        me.$table.bootstrapTable('remove', {
+          field: 'code',
+          values: [code]
+        });
+        toastr.success(`Xóa thành công.`);
+      }
+      showPopupMsg(`<span>Bạn có chắc chắn muốn xóa <b>tài sản ${dataRow.code} - ${dataRow.name}</b> hay không?</span>`, deleteFunc.bind(me, dataRow.code), "danger");
+    }
+    
+  }
+
+  deleteManyAction() {
+    let me = this;
+    let indexes = me.getIndexSelections();
+    if(indexes == null || indexes.length == 0) {
+      toastr.info("Bạn cần chọn bản ghi để thực hiện thao tác này.");
+    } else {
+
+      let deleteManyByIndexes = () => {
+        me.$table.bootstrapTable('remove', {
+          field: 'index',
+          values: indexes
+        });
+        toastr.success(`Xóa thành công ${indexes.length} bản ghi.`);
+      }
+      showPopupMsg(`<span>Bạn có chắc chắn muốn xóa <b>${indexes.length} bản ghi đã chọn</b> hay không?</span>`, deleteManyByIndexes, "danger");
+    }
+  }
 }
 
 var oFormBase = new ManageInfoAsset();

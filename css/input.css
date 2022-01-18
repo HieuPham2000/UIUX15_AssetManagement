@@ -43,3 +43,7 @@
 .input-control .text-input.error::placeholder {
   opacity: 0;
 }
+
+.required {
+  color: red !important;
+}

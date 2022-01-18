@@ -1,8 +1,12 @@
 var popup = $('#msg-popup-overlay').clone();
 $('#msg-popup-overlay').remove();
 
-function showPopup(func = function(){}, canc = function(){}) {
+function showPopup(func = function(){}, canc = function(){}, type) {
   let clone = popup.clone();
+  if(type) {
+    clone.find(".popup").addClass(type);
+  }
+  
   clone.appendTo('body');
   clone.show();
   
@@ -20,17 +24,32 @@ function hidePopup() {
   $('#msg-popup-overlay').remove();
 }
 
-function showPopupMsg(msg, func) {
+function showPopupMsg(msg, func, type) {
 
   return new Promise(function(resolve, reject) {
     let p = showPopup(() => {
       func();
       resolve();
-    }, resolve);
-    p.find('.popup-body').html(msg);
+    }, resolve, type);
+    p.find('.popup-body-content').html(msg);
   })
+}
 
-  
+/**
+ * 
+ * @param {*} func 
+ * @param {*} option type, title, content
+ * @returns 
+ */
+function showCustomPopup(func, option) {
 
+  return new Promise(function(resolve, reject) {
+    let p = showPopup(() => {
+      func();
+      resolve();
+    }, resolve, option.type);
+    p.find('.text-header').html(option.title);
+    p.find('.popup-body-content').html(option.content);
+  })
 }
 

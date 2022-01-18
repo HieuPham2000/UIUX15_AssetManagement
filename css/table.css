@@ -5,10 +5,6 @@
   flex: 1;
 }
 
-.content-table .bootstrap-table .fixed-table-container .table thead th .th-inner {
-  /* white-space: normal; */
-}
-
 .bs-checkbox {
   vertical-align: unset !important;
   padding: unset !important;

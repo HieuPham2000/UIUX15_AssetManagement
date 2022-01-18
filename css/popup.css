@@ -1,6 +1,7 @@
 .popup {
   background-color: #fff;
   min-width: 500px;
+  max-width: 500px;
   min-height: 200px;
   display: flex;
   flex-direction: column;
@@ -57,10 +58,22 @@
   margin-right: 20px;
 }
 
-.popup-body-icon.icon-danger {
+.popup.danger .popup-body-icon {
+  flex-shrink: 0;
   height: 40px;
   width: 40px;
   background-image: url(../assets/icon/alarm.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 20px;
+}
+
+.popup.warning .popup-body-icon {
+  flex-shrink: 0;
+  height: 40px;
+  width: 40px;
+  background-image: url(../assets/icon/warning.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;

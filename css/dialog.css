@@ -8,20 +8,22 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, .5);
-  z-index: 5;
+  z-index: 9999;
 }
 
 .dialog {
   background-color: #fff;
-  padding: 0px 15px 0px 15px;
+  padding: 0px 24px 0px 24px;
   min-width: 850px;
-  min-height: calc(100% - 10px);
+  min-height: calc(100% - 100px);
+  max-height: 100%;
   display: flex;
   flex-direction: column;
+  border-radius: 3px;
 }
 
 .dialog .dialog-header {
-  height: 60px;
+  padding: 24px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -34,6 +36,8 @@
 
 .dialog .dialog-header .dialog-close {
   font-size: 24px;
+  color: #b5b5b5;
+  cursor: pointer;
 }
 
 .dialog .dialog-body {
