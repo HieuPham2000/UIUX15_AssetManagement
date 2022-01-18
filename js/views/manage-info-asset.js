@@ -40,8 +40,18 @@ class ManageInfoAsset extends FormBase {
       source: me.cboStatusSource
     });
 
-    me.findControl("#selectExportDataType").selectmenu();
-
+    me.findControl("#selectExportDataType").selectmenu({
+      change: function( event, data ) {
+        me.$table.bootstrapTable('refreshOptions', {
+          exportDataType: $(this).val(),
+          exportOptions: {
+            fileName: function() {
+              return `${me.fileName}_${$(this).val()}`;
+            }
+          },
+        });
+      }
+    });
   }
 
 
@@ -57,7 +67,7 @@ class ManageInfoAsset extends FormBase {
     me.$table.bootstrapTable('destroy').bootstrapTable({
       exportOptions: {
         fileName: function() {
-          return me.fileName;
+          return `${me.fileName}_all`;
         }
       },
     });

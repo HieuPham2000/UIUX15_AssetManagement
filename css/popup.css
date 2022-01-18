@@ -1,31 +1,37 @@
 .popup {
   background-color: #fff;
-  padding: 0px 15px 0px 15px;
   min-width: 500px;
-  min-height: 250px;
+  min-height: 200px;
   display: flex;
   flex-direction: column;
+  border-radius: 3px;
+  overflow: hidden;
 }
 
 .popup .popup-header {
-  height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 24px 24px 0 24px;
 }
 
 .popup .popup-header .text-header {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
 }
 
 .popup .popup-header .popup-close {
-  font-size: 24px;
+  font-size: 20px;
+  color: #b5b5b5;
+  cursor: pointer;
 }
 
 .popup .popup-body {
   flex: 1;
-  margin: 12px 0px;
+  display: flex;
+  font-size: 16px;
+  padding: 24px;
+  padding-bottom: 0;
 }
 
 .popup .popup-footer {
@@ -33,12 +39,34 @@
   height: 60px;
   align-items: center;
   justify-content: flex-end;
-}
-
-.popup .popup-body {
-  font-weight: 600;
+  background-color: #e9e9e9;
+  padding: 0 24px;
 }
 
 .popup .popup-footer .m-btn  {
-  margin-left: 8px;
+  margin-left: 16px;
+}
+
+.popup-body-icon.icon-warning {
+  height: 40px;
+  width: 40px;
+  background-image: url(../assets/icon/warning.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 20px;
+}
+
+.popup-body-icon.icon-danger {
+  height: 40px;
+  width: 40px;
+  background-image: url(../assets/icon/alarm.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 20px;
+}
+
+.popup-body-content {
+  margin-bottom: 24px;
 }

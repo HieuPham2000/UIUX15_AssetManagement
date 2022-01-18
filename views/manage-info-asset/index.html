@@ -348,6 +348,91 @@
       <!-- /.sidebar -->
     </aside>
 
+    <div id="dialog-overlay" class="overlay" style="display: none">
+      <form id="dialog" class="dialog">
+        <div class="dialog-header">
+          <div class="text-header">Chỉnh sửa thông tin sự cố</div>
+          <i class="dialog-close pointer fas fa-times"></i>
+        </div>
+        <div class="dialog-body">
+
+          <div class="dialog-row">
+            <div class="input-control input-control-col form-group col-6">
+              <label for="txtCode">Mã sự cố</label>
+              <input required data-field="code" placeholder="Mã sự cố" class="form-control text-input" type="text">
+            </div>
+            <div class="input-control input-control-col form-group col-6">
+              <label for="txtCode">Loại sự cố</label>
+              <input data-control="autocomplete" data-field="incidentType" data-source="incidentType"
+                placeholder="Loại sự cố" class="form-control text-input" type="text">
+            </div>
+          </div>
+
+          <div class="dialog-row">
+            <div class="input-control input-control-col form-group col-6">
+              <label for="txtCode">Người báo cáo</label>
+              <input data-field="foundedBy" placeholder="Người báo cáo" class="form-control text-input" type="text">
+            </div>
+            <div class="input-control input-control-col form-group col-6">
+              <label for="txtCode">Ngày phát hiện</label>
+              <input data-field="foundedDate" placeholder="Ngày phát hiện" class="form-control text-input"
+                type="text">
+            </div>
+          </div>
+
+          <div class="dialog-row">
+            <div class="input-control input-control-col form-group col-12">
+              <label for="txtCode">Tài sản</label>
+              <input data-field="assetName" placeholder="Tài sản" class="form-control text-input" type="text">
+            </div>
+          </div>
+
+          <div class="dialog-row">
+            <div class="input-control input-control-col form-group col-6">
+              <label for="txtCode">Trạng thái</label>
+              <input data-field="status" data-control="autocomplete" data-source="incidentStatus"
+                placeholder="Trạng thái" class="form-control text-input" type="text">
+            </div>
+            <div class="input-control input-control-col form-group col-6">
+              <label for="txtCode">Trạng thái tài sản</label>
+              <input data-field="assetStatus" data-control="autocomplete" data-source="furStatus"
+                placeholder="Trạng thái tài sản" class="form-control text-input" type="text">
+            </div>
+          </div>
+
+          <div class="dialog-row">
+            <div class="input-control input-control-col form-group col-12">
+              <label for="txtCode">Nội dung</label>
+              <textarea data-field="content" rows="3" placeholder="Nội dung" class="form-control text-input"
+                type="text"></textarea>
+            </div>
+          </div>
+
+        </div>
+        <div class="dialog-footer">
+          <button data-command="Cancel" type="button" class="m-btn btn btn-outline-secondary">Hủy</button>
+          <button data-command="Save" type="button" class="m-btn btn btn-success">Lưu</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="msg-popup-overlay" class="overlay" style="display: none">
+      <div class="popup">
+        <div class="popup-header">
+          <div class="text-header">Xóa bản ghi</div>
+          <i class="popup-close pointer fas fa-times"></i>
+        </div>
+        <div class="popup-body">
+          <div class="popup-body-icon icon-danger"></div>
+          <div class="popup-body-content">Bạn có chắc muốn xóa bản ghi này không?</div>
+        </div>
+        <div class="popup-footer">
+          <button data-command="Cancel" type="button" class="m-btn btn btn-outline-secondary">Hủy</button>
+          <button data-command="Save" type="button" class="m-btn btn btn-danger">Xóa</button>
+        </div>
+      </div>
+    </div>
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
@@ -368,97 +453,7 @@
       </div>
       <!-- /.content-header -->
 
-      <div id="dialog-overlay" class="overlay" style="display: none">
-        <form id="dialog" class="dialog">
-          <div class="dialog-header">
-            <div class="text-header">Chỉnh sửa thông tin sự cố</div>
-            <i class="dialog-close pointer fas fa-times"></i>
-          </div>
-          <div class="dialog-body">
 
-            <div class="dialog-row">
-              <div class="input-control input-control-col form-group col-6">
-                <label for="txtCode">Mã sự cố</label>
-                <input required data-field="code" placeholder="Mã sự cố" class="form-control text-input" type="text">
-              </div>
-              <div class="input-control input-control-col form-group col-6">
-                <label for="txtCode">Loại sự cố</label>
-                <input data-control="autocomplete" data-field="incidentType" data-source="incidentType"
-                  placeholder="Loại sự cố" class="form-control text-input" type="text">
-              </div>
-            </div>
-
-            <div class="dialog-row">
-              <div class="input-control input-control-col form-group col-6">
-                <label for="txtCode">Người báo cáo</label>
-                <input data-field="foundedBy" placeholder="Người báo cáo" class="form-control text-input" type="text">
-              </div>
-              <div class="input-control input-control-col form-group col-6">
-                <label for="txtCode">Ngày phát hiện</label>
-                <input data-field="foundedDate" placeholder="Ngày phát hiện" class="form-control text-input"
-                  type="text">
-              </div>
-            </div>
-
-            <div class="dialog-row">
-              <div class="input-control input-control-col form-group col-12">
-                <label for="txtCode">Tài sản</label>
-                <input data-field="assetName" placeholder="Tài sản" class="form-control text-input" type="text">
-              </div>
-            </div>
-
-            <div class="dialog-row">
-              <div class="input-control input-control-col form-group col-6">
-                <label for="txtCode">Trạng thái</label>
-                <input data-field="status" data-control="autocomplete" data-source="incidentStatus"
-                  placeholder="Trạng thái" class="form-control text-input" type="text">
-              </div>
-              <div class="input-control input-control-col form-group col-6">
-                <label for="txtCode">Trạng thái tài sản</label>
-                <input data-field="assetStatus" data-control="autocomplete" data-source="furStatus"
-                  placeholder="Trạng thái tài sản" class="form-control text-input" type="text">
-              </div>
-            </div>
-
-            <div class="dialog-row">
-              <div class="input-control input-control-col form-group col-12">
-                <label for="txtCode">Nội dung</label>
-                <textarea data-field="content" rows="3" placeholder="Nội dung" class="form-control text-input"
-                  type="text"></textarea>
-              </div>
-            </div>
-
-          </div>
-          <div class="dialog-footer">
-            <button data-command="Cancel" type="button" class="m-btn btn btn-outline-secondary">Hủy</button>
-            <button data-command="Save" type="button" class="m-btn btn btn-success">Lưu</button>
-          </div>
-        </form>
-      </div>
-
-      <div id="msg-popup-overlay" class="overlay" style="display: none">
-        <div class="popup">
-          <div class="popup-header">
-            <div class="text-header">Thông báo</div>
-            <i class="popup-close pointer fas fa-times"></i>
-          </div>
-          <div class="popup-body">
-            Bạn có chắc muốn xóa bản ghi này không?
-          </div>
-          <div class="popup-footer">
-            <button data-command="Cancel" type="button" class="m-btn btn btn-outline-secondary">Hủy</button>
-            <button data-command="Save" type="button" class="m-btn btn btn-success">Lưu</button>
-          </div>
-        </div>
-      </div>
-
-      <div title="Ẩn/ hiện cột" class="toggle-popup" style="display: none">
-        <div class="toggle-content"></div>
-        <div class="toggle-footer">
-          <button data-command="Cancel" type="button" class="m-btn btn btn-outline-secondary">Hủy</button>
-          <button data-command="Save" type="button" class="m-btn btn btn-success">Lưu</button>
-        </div>
-      </div>
 
       <!-- Main content -->
       <section class="content">
@@ -496,11 +491,21 @@
                       </div>
                       <button data-control="searchControl" type="button" class="m-btn btn btn-success" style="margin-left: 32px;">Lọc</button>
                       <div class="my-flex-space"></div>
-                      <button type="button" class="m-btn btn btn-success" style="margin-right: 24px;" title="Thêm tài sản">Thêm tài sản</button>
+                      <button type="button" class="m-btn btn btn-success dev-feat" style="margin-right: 24px;" title="Thêm tài sản">Thêm tài sản</button>
                     </div>
 
                 </div>
-
+                <div id="toolbar">
+                  <div class="input-control form-group">
+                    <label for="selectExportDataType">Chế độ xuất dữ liệu</label>
+                    <select id="selectExportDataType">
+                      <option value="selected">Dữ liệu được chọn</option>
+                      <option value="basic">Dữ liệu hiện tại</option>
+                      <option value="all" selected>Toàn bộ dữ liệu</option>
+                    </select>
+                  </div>
+                  
+                </div>
                 <div class="content-table">
                   <table 
                     id="table" 
@@ -514,8 +519,8 @@
                     data-show-columns-search="true"
                     data-show-columns-toggle-all="true"
                     data-show-export="true"
-                    data-export-types="['json', 'xml', 'csv', 'txt', 'doc', 'excel', 'xlsx']"
                     data-export-data-type="all"
+                    data-export-types="['json', 'xml', 'csv', 'txt', 'doc', 'excel', 'xlsx']"
                     data-click-to-select="true"
                     data-minimum-count-columns="2"
                     data-show-pagination-switch="true"
