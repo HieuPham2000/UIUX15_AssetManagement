@@ -1,4 +1,4 @@
-export const manageInfoAssetData = [
+const manageInfoAssetData = [
   {
     index: 1,
     code: "TS01",
