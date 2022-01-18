@@ -84,3 +84,21 @@ a.nav-link {
   top: 0;
   z-index: 100;
 }
+
+
+/* label */
+.input-control label {
+  margin-right: 10px;
+}
+
+/*  */
+.action-grid i {
+  color: #2196F3;
+  cursor: pointer;
+}
+
+/*  */
+
+.page-list .btn-group {
+  display: initial !important;
+}

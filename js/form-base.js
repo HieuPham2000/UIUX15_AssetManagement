@@ -304,7 +304,8 @@ class FormBase {
           }
         }).focus(function () {
           $(this).autocomplete("search");
-        })
+          $(this).select();
+        });
   
         $(item).parent().append(`<i class="ic-dropdown fas fa-caret-down"></i>`);
   
@@ -383,8 +384,8 @@ class FormBase {
  * @param {*} command 
  * @returns 
  */
-function renderRowBtn(className, command) {
-  return `<i class="${className}" data-command="${command}" ></i>`
+function renderRowBtn(className, command, title) {
+  return `<i class="${className}" data-command="${command}" title="${title}"></i>`
 }
 
 /**
@@ -393,10 +394,11 @@ function renderRowBtn(className, command) {
  */
 function renderActionBtn() {
 
-  let editBtn = renderRowBtn("far fa-edit pointer", "Edit");
-  let deleteBtn = renderRowBtn("far fa-trash-alt pointer", "Delete");
+  let editBtn = renderRowBtn("far fa-edit pointer", "Edit", "Sửa");
+  let deleteBtn = renderRowBtn("far fa-trash-alt pointer", "Delete", "Xóa");
 
   return `<div class="action-grid">${editBtn + deleteBtn}</div>`;
 }
 
+var oFormBase = new FormBase;
 var app = this;
