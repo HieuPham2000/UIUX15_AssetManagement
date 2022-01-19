@@ -7,7 +7,7 @@ input:focus {
 }
 
 .ui-menu {
-  z-index: 10;
+  z-index: 9999 !important;
 }
 
 .ui-dialog .ui-dialog-titlebar {
