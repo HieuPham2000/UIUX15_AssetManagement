@@ -427,5 +427,9 @@ function renderActionBtn() {
   return `<div class="action-grid">${editBtn + deleteBtn}</div>`;
 }
 
+function renderIndexFormatter(value, row, index) {
+  return index + 1;
+}
+
 var oFormBase = new FormBase;
 var app = this;
