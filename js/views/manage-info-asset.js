@@ -2,8 +2,12 @@
 class ManageInfoAsset extends FormBase {
   constructor() {
     super();
-    this.fileName = "asset-info";
-    this.myInit();
+    let me = this;
+    me.fileName = "asset-info";
+    me.myInit();
+    me.findControl("#btnAddAsset").click(() => {
+      me.addAction();
+    });
   }
 
   getUrlParameter(sParam) {
@@ -184,12 +188,8 @@ class ManageInfoAsset extends FormBase {
     let me = this;
     switch (command) {
       case "Edit":
-        me.$dialog.show();
-        me.recordRow = dataRow;
-        me.$dialog.find("[data-field]").each((index, el) => {
-          let field = $(el).data("field");
-          $(el).val(dataRow[field])
-        })
+        me.editAction(dataRow);
+        
         break;
       case "Delete":
         me.deleteAction(dataRow);
@@ -199,6 +199,10 @@ class ManageInfoAsset extends FormBase {
     }
   }
 
+  /**
+   * Thêm 1 số button cho table
+   * @returns 
+   */
   handleTableCustomButtons() {
     let me = this;
     return {
@@ -215,6 +219,10 @@ class ManageInfoAsset extends FormBase {
     }
   }
 
+  /**
+   * Lấy ra danh sách index các bản ghi được chọn
+   * @returns 
+   */
   getIndexSelections() {
     let me = this;
     return $.map(me.$table.bootstrapTable('getSelections'), function (row) {
@@ -222,6 +230,10 @@ class ManageInfoAsset extends FormBase {
     })
   }
 
+  /**
+   * Hành động xóa bản ghi
+   * @param {*} dataRow 
+   */
   deleteAction(dataRow) {
     let me = this;
     if(dataRow) {
@@ -237,6 +249,9 @@ class ManageInfoAsset extends FormBase {
     
   }
 
+  /**
+   * Hành động xóa nhiều bản ghi
+   */
   deleteManyAction() {
     let me = this;
     let indexes = me.getIndexSelections();
@@ -255,9 +270,84 @@ class ManageInfoAsset extends FormBase {
     }
   }
 
+  /**
+   * Hành động sửa bản ghi
+   */
+  editAction(dataRow) {
+    let me = this;
+    me.$dialog.find(".text-header").html("Chỉnh sửa thông tin tài sản");
+    me.$dialog.show();
+
+    // me.$dialog.find("[data-control=autocomplete]").each((index, item) => {
+    //   let source = $(item).data("source");
+    //   $(item).autocomplete(me[source]);
+    // });
+
+    me.$dialog.find(".dialog").data("formType", "edit");
+
+    me.recordRow = dataRow;
+    me.$dialog.find("[data-field]").each((index, el) => {
+      let field = $(el).data("field");
+      $(el).val(dataRow[field]);
+    });
+
+    // focus ô đầu tiên
+    me.$dialog.find("[data-field]")[0].focus();
+  }
+
+  /**
+   * Hành động nhấn nút thêm
+   */
+   addAction() {
+    let me = this;
+    me.$dialog.find(".text-header").html("Thêm tài sản mới");
+    me.$dialog.show();
+    me.$dialog.find(".dialog").data("formType", "add");
+
+    me.recordRow = JSON.parse(JSON.stringify(manageInfoAssetEmptyObject));
+    me.recordRow.id = me.generateNewId();
+    me.recordRow.code = me.generateNewAssetCode();
+
+    // bind dữ liệu mặc định và reset form
+    me.$dialog.find("[data-field]").each((index, el) => {
+      let field = $(el).data("field");
+      $(el).val(me.recordRow[field]);
+    });
+
+    // focus ô đầu tiên
+    me.$dialog.find("[data-field]")[0].focus();
+  }
+
+  /**
+   * Gen mã tài sản mới
+   * @returns mã tài sản mới
+   */
   generateNewAssetCode() {
+    let me = this;
+    let convertToNumber = (code) => {
+      let res = parseInt(code.substr(2));
+      if(isNaN(res)) {
+        throw "Invalid code";
+      }
+      return res;
+    }
+
     let data = me.$table.getData();
-    data.filter()
+    let newCodeNumber = Math.max(...data.map(x => convertToNumber(x.code))) + 1;
+    if(newCodeNumber < 10) {
+      newCodeNumber = `0${newCodeNumber}`;
+    }
+    return `TS${newCodeNumber}`;
+  }
+
+  /**
+   * Gen id mới
+   * @returns id mới
+   */
+  generateNewId() {
+    let me = this;
+    let data = me.$table.getData();
+    return Math.max(...data.map(x => x.id) + 1);
   }
 }
 
