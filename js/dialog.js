@@ -18,6 +18,18 @@ class BaseDialog extends FormBase {
    */
   initEvent() {
     let me = this;
+
+    // $(me.selector).on("keydown", async function(e){
+    //   if(e.ctrlKey && e.which == 83) {
+    //     me.saveAction();
+    //     e.preventDefault();
+    //     e.stopImmediatePropagation();
+    //   } else if (e.which == 27) {
+    //     await me.hideForm();
+    //     e.preventDefault();
+    //     e.stopImmediatePropagation();
+    //   }
+    // });
     
     me.findControl(".dialog-close").click(function(){
       me.hideForm();
@@ -44,12 +56,16 @@ class BaseDialog extends FormBase {
       return;
     }
 
-    let saveData = $.extend(me.parent.recordRow, me.getFormData())
+    let saveData = $.extend(me.parent.recordRow, me.getFormData());
 
-    me.parent.$table.updateRow(saveData);
-
-    me.showToast(Constants.SaveSuccess)
-
+    let formType = $(me.selector).data("formType");
+    if(formType == "add") {
+      me.parent.$table.insertRow(saveData);
+      me.showToast(Constants.AddSuccess);
+    } else {
+      me.parent.$table.updateRow(saveData);
+      me.showToast(Constants.EditSuccess);
+    }
     me.hideForm();
   }
 
