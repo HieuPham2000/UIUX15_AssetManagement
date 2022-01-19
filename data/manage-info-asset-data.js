@@ -7,6 +7,8 @@ const manageInfoAssetData = [
     status: "Sẵn sàng sử dụng",
     personManage: "Phạm Trung Hiếu",
     personUse: "",
+    description: "",
+
   },
   {
     id: 2,
@@ -16,6 +18,8 @@ const manageInfoAssetData = [
     status: "Đang sử dụng",
     personManage: "Phạm Trung Hiếu",
     personUse: "Phạm Trung Hiếu",
+    description: "",
+
   },
   {
     id: 3,
@@ -25,6 +29,8 @@ const manageInfoAssetData = [
     status: "Sẵn sàng sử dụng",
     personManage: "Phạm Trung Hiếu",
     personUse: "",
+    description: "",
+
   },
   {
     id: 4,
@@ -34,6 +40,8 @@ const manageInfoAssetData = [
     status: "Sẵn sàng sử dụng",
     personManage: "Phạm Trung Hiếu",
     personUse: "",
+    description: "",
+
   },
   {
     id: 5,
@@ -43,6 +51,8 @@ const manageInfoAssetData = [
     status: "Sẵn sàng sử dụng",
     personManage: "Phạm Trung Hiếu",
     personUse: "",
+    description: "",
+
   },
   {
     id: 6,
@@ -52,6 +62,8 @@ const manageInfoAssetData = [
     status: "Sẵn sàng sử dụng",
     personManage: "Phạm Trung Hiếu",
     personUse: "",
+    description: "",
+
   },
   {
     id: 7,
@@ -61,6 +73,8 @@ const manageInfoAssetData = [
     status: "Sẵn sàng sử dụng",
     personManage: "Phạm Trung Hiếu",
     personUse: "",
+    description: "",
+
   },
   {
     id: 8,
@@ -70,6 +84,8 @@ const manageInfoAssetData = [
     status: "Sẵn sàng sử dụng",
     personManage: "Phạm Trung Hiếu",
     personUse: "",
+    description: "",
+
   },
   {
     id: 9,
@@ -79,6 +95,8 @@ const manageInfoAssetData = [
     status: "Sẵn sàng sử dụng",
     personManage: "Phạm Trung Hiếu",
     personUse: "",
+    description: "",
+
   },
   {
     id: 10,
@@ -88,6 +106,8 @@ const manageInfoAssetData = [
     status: "Sẵn sàng sử dụng",
     personManage: "Phạm Trung Hiếu",
     personUse: "",
+    description: "",
+
   },
   {
     id: 11,
@@ -97,6 +117,8 @@ const manageInfoAssetData = [
     status: "Sẵn sàng sử dụng",
     personManage: "Phạm Trung Hiếu",
     personUse: "",
+    description: "",
+
   },
   {
     id: 12,
@@ -106,6 +128,8 @@ const manageInfoAssetData = [
     status: "Sẵn sàng sử dụng",
     personManage: "Phạm Trung Hiếu",
     personUse: "",
+    description: "",
+
   },
   {
     id: 13,
@@ -115,6 +139,8 @@ const manageInfoAssetData = [
     status: "Sẵn sàng sử dụng",
     personManage: "Phạm Trung Hiếu",
     personUse: "",
+    description: "",
+
   },
   {
     id: 14,
@@ -124,6 +150,8 @@ const manageInfoAssetData = [
     status: "Sẵn sàng sử dụng",
     personManage: "Phạm Trung Hiếu",
     personUse: "",
+    description: "",
+
   },
   {
     id: 15,
@@ -133,6 +161,8 @@ const manageInfoAssetData = [
     status: "Sẵn sàng sử dụng",
     personManage: "Phạm Trung Hiếu",
     personUse: "",
+    description: "",
+
   },
   {
     id: 16,
@@ -142,6 +172,8 @@ const manageInfoAssetData = [
     status: "Sẵn sàng sử dụng",
     personManage: "Phạm Trung Hiếu",
     personUse: "",
+    description: "",
+
   },
   {
     id: 17,
@@ -151,6 +183,8 @@ const manageInfoAssetData = [
     status: "Sẵn sàng sử dụng",
     personManage: "Phạm Trung Hiếu",
     personUse: "",
+    description: "",
+
   },
   {
     id: 18,
@@ -160,6 +194,8 @@ const manageInfoAssetData = [
     status: "Sẵn sàng sử dụng",
     personManage: "Phạm Trung Hiếu",
     personUse: "",
+    description: "",
+
   },
   {
     id: 19,
@@ -169,6 +205,8 @@ const manageInfoAssetData = [
     status: "Sẵn sàng sử dụng",
     personManage: "Phạm Trung Hiếu",
     personUse: "",
+    description: "",
+
   },
   {
     id: 20,
@@ -178,6 +216,20 @@ const manageInfoAssetData = [
     status: "Sẵn sàng sử dụng",
     personManage: "Phạm Trung Hiếu",
     personUse: "",
+    description: "",
+
   },
 ];
+
+const manageInfoAssetEmptyObject = 
+  {
+    id: "",
+    code: "",
+    name: "",
+    group: "",
+    status: "",
+    personManage: "",
+    personUse: "",
+    description: "",
+  };
 
