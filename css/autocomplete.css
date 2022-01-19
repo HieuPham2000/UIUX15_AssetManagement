@@ -1,4 +1,4 @@
-.input-control-col input[data-control="autocomplete"]+i {
+/* .input-control-col input[data-control="autocomplete"]+i {
   position: absolute;
   right: 8px;
   bottom: 50%;
@@ -10,4 +10,15 @@ input[data-control="autocomplete"]+i {
   right: 8px;
   bottom: 50%;
   transform: translateY(50%);
+} */
+
+i.ic-dropdown {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.input-control-col i.ic-dropdown {
+  top: 45px;
 }

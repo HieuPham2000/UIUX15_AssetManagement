@@ -13,17 +13,17 @@
 
 .dialog {
   background-color: #fff;
-  padding: 0px 24px 0px 24px;
+  overflow: hidden;
   min-width: 850px;
-  min-height: calc(100% - 100px);
-  max-height: 100%;
+  min-height: 60%;
+  max-height: 90%;
   display: flex;
   flex-direction: column;
   border-radius: 3px;
 }
 
 .dialog .dialog-header {
-  padding: 24px 0;
+  padding: 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -41,19 +41,21 @@
 }
 
 .dialog .dialog-body {
+  padding: 12px 24px;
+  overflow: auto;
   flex: 1;
-  margin: 12px 0px;
 }
 
 .dialog .dialog-footer {
+  background-color: #d9d9d9;
+  padding: 12px 24px;
   display: flex;
-  height: 60px;
   align-items: center;
   justify-content: flex-end;
 }
 
 .dialog .dialog-footer .m-btn  {
-  margin-left: 8px;
+  margin-left: 12px;
 }
 
 .dialog-row {
