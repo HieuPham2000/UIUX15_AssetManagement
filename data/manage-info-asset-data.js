@@ -1,6 +1,6 @@
 const manageInfoAssetData = [
   {
-    index: 1,
+    id: 1,
     code: "TS01",
     name: "Laptop Dell Latitude 7480",
     group: "Máy móc",
@@ -9,7 +9,7 @@ const manageInfoAssetData = [
     personUse: "",
   },
   {
-    index: 2,
+    id: 2,
     code: "TS02",
     name: "Máy in Canon LB2900",
     group: "Máy móc",
@@ -18,7 +18,7 @@ const manageInfoAssetData = [
     personUse: "Phạm Trung Hiếu",
   },
   {
-    index: 3,
+    id: 3,
     code: "TS03",
     name: "Bàn gỗ làm việc",
     group: "Máy móc",
@@ -27,7 +27,7 @@ const manageInfoAssetData = [
     personUse: "",
   },
   {
-    index: 4,
+    id: 4,
     code: "TS04",
     name: "Laptop Dell Latitude 7480",
     group: "Máy móc",
@@ -36,7 +36,7 @@ const manageInfoAssetData = [
     personUse: "",
   },
   {
-    index: 5,
+    id: 5,
     code: "TS05",
     name: "Laptop Dell Latitude 7480",
     group: "Máy móc",
@@ -45,7 +45,7 @@ const manageInfoAssetData = [
     personUse: "",
   },
   {
-    index: 6,
+    id: 6,
     code: "TS06",
     name: "Laptop Dell Latitude 7480",
     group: "Máy móc",
@@ -54,7 +54,7 @@ const manageInfoAssetData = [
     personUse: "",
   },
   {
-    index: 7,
+    id: 7,
     code: "TS07",
     name: "Laptop Dell Latitude 7480",
     group: "Máy móc",
@@ -63,7 +63,7 @@ const manageInfoAssetData = [
     personUse: "",
   },
   {
-    index: 8,
+    id: 8,
     code: "TS08",
     name: "Laptop Dell Latitude 7480",
     group: "Máy móc",
@@ -72,7 +72,7 @@ const manageInfoAssetData = [
     personUse: "",
   },
   {
-    index: 9,
+    id: 9,
     code: "TS09",
     name: "Laptop Dell Latitude 7480",
     group: "Máy móc",
@@ -81,7 +81,7 @@ const manageInfoAssetData = [
     personUse: "",
   },
   {
-    index: 10,
+    id: 10,
     code: "TS10",
     name: "Laptop Dell Latitude 7480",
     group: "Máy móc",
@@ -90,7 +90,7 @@ const manageInfoAssetData = [
     personUse: "",
   },
   {
-    index: 11,
+    id: 11,
     code: "TS11",
     name: "Laptop Dell Latitude 7480",
     group: "Máy móc",
@@ -99,7 +99,7 @@ const manageInfoAssetData = [
     personUse: "",
   },
   {
-    index: 12,
+    id: 12,
     code: "TS12",
     name: "Laptop Dell Latitude 7480",
     group: "Máy móc",
@@ -108,7 +108,7 @@ const manageInfoAssetData = [
     personUse: "",
   },
   {
-    index: 13,
+    id: 13,
     code: "TS13",
     name: "Laptop Dell Latitude 7480",
     group: "Máy móc",
@@ -117,7 +117,7 @@ const manageInfoAssetData = [
     personUse: "",
   },
   {
-    index: 14,
+    id: 14,
     code: "TS14",
     name: "Laptop Dell Latitude 7480",
     group: "Máy móc",
@@ -126,7 +126,7 @@ const manageInfoAssetData = [
     personUse: "",
   },
   {
-    index: 15,
+    id: 15,
     code: "TS15",
     name: "Laptop Dell Latitude 7480",
     group: "Máy móc",
@@ -135,7 +135,7 @@ const manageInfoAssetData = [
     personUse: "",
   },
   {
-    index: 16,
+    id: 16,
     code: "TS16",
     name: "Laptop Dell Latitude 7480",
     group: "Máy móc",
@@ -144,7 +144,7 @@ const manageInfoAssetData = [
     personUse: "",
   },
   {
-    index: 17,
+    id: 17,
     code: "TS17",
     name: "Laptop Dell Latitude 7480",
     group: "Máy móc",
@@ -153,7 +153,7 @@ const manageInfoAssetData = [
     personUse: "",
   },
   {
-    index: 18,
+    id: 18,
     code: "TS18",
     name: "Laptop Dell Latitude 7480",
     group: "Máy móc",
@@ -162,7 +162,7 @@ const manageInfoAssetData = [
     personUse: "",
   },
   {
-    index: 19,
+    id: 19,
     code: "TS19",
     name: "Laptop Dell Latitude 7480",
     group: "Máy móc",
@@ -171,7 +171,7 @@ const manageInfoAssetData = [
     personUse: "",
   },
   {
-    index: 20,
+    id: 20,
     code: "TS20",
     name: "Laptop Dell Latitude 7480",
     group: "Máy móc",

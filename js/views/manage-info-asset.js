@@ -75,12 +75,14 @@ class ManageInfoAsset extends FormBase {
       "Thanh lý"
     ];
 
-    me.findControl("#cboGroup").autocomplete({
-      source: me.cboGroupSource
-    });
-
-    me.findControl("#cboStatus").autocomplete({
-      source: me.cboStatusSource
+    me.findControl("[data-control=autocomplete]").each((index, item) => {
+      if(!$(item).data("autocomplete")) {
+        $(item).data("autocomplete", true);
+      }
+      let source = $(item).data("source");
+      $(item).autocomplete({
+        source: me[source] || []
+      });
     });
 
     me.findControl("#selectExportDataType").selectmenu({
@@ -251,6 +253,11 @@ class ManageInfoAsset extends FormBase {
       }
       showPopupMsg(`<span>Bạn có chắc chắn muốn xóa <b>${indexes.length} bản ghi đã chọn</b> hay không?</span>`, deleteManyByIndexes, "danger");
     }
+  }
+
+  generateNewAssetCode() {
+    let data = me.$table.getData();
+    data.filter()
   }
 }
 

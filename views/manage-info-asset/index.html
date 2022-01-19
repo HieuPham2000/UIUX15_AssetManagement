@@ -359,51 +359,42 @@
           <div class="dialog-row">
             <div class="input-control input-control-col form-group col-6">
               <label for="txtCodeEdit">Mã tài sản <span class="required">(*)</span></label>
-              <input id="txtCodeEdit" required data-field="code" placeholder="Mã tài sản" class="form-control text-input" type="text">
+              <input id="txtCodeEdit" name="txtCodeEdit" data-field="code" placeholder="Mã tài sản" class="form-control text-input" type="text" required >
             </div>
             <div class="input-control input-control-col form-group col-6">
               <label for="cboGroupEdit">Nhóm tài sản <span class="required">(*)</span></label>
-              <input id="cboGroupEdit" required data-control="autocomplete" data-field="group" data-source="cboGroupSource"
-                placeholder="Nhóm tài sản" class="form-control text-input" type="text">
+              <input id="cboGroupEdit" name="cboGroupEdit" data-control="autocomplete" data-field="group" data-source="cboGroupSource"
+                placeholder="Nhóm tài sản" class="form-control text-input" type="text" required>
             </div>
           </div>
 
           <div class="dialog-row">
             <div class="input-control input-control-col form-group col-6">
               <label for="txtNameEdit">Tên tài sản <span class="required">(*)</span></label>
-              <input id="txtNameEdit" required data-field="name" placeholder="Tên tài sản" class="form-control text-input" type="text">
+              <input id="txtNameEdit" name="txtNameEdit" data-field="name" placeholder="Tên tài sản" class="form-control text-input" type="text" required>
             </div>
             <div class="input-control input-control-col form-group col-6">
               <label for="cboStatusEdit">Trạng thái <span class="required">(*)</span></label>
-              <input id="cboStatusEdit" required data-control="autocomplete" data-field="status" data-source="cboStatusSource"
-                placeholder="Trạng thái" class="form-control text-input" type="text">
-            </div>
-          </div>
-
-          <div class="dialog-row">
-            <div class="input-control input-control-col form-group col-12">
-              <label for="txtCode">Tài sản</label>
-              <input data-field="assetName" placeholder="Tài sản" class="form-control text-input" type="text">
+              <input id="cboStatusEdit" name="cboStatusEdit" data-control="autocomplete" data-field="status" data-source="cboStatusSource"
+                placeholder="Trạng thái" class="form-control text-input" type="text" required>
             </div>
           </div>
 
           <div class="dialog-row">
             <div class="input-control input-control-col form-group col-6">
-              <label for="txtCode">Trạng thái</label>
-              <input data-field="status" data-control="autocomplete" data-source="incidentStatus"
-                placeholder="Trạng thái" class="form-control text-input" type="text">
+              <label for="txtPersonManageEdit">Người quản lý</label>
+              <input id="txtPersonManageEdit" name="txtPersonManageEdit" data-field="personManage" placeholder="Người quản lý" class="form-control text-input" type="text">
             </div>
             <div class="input-control input-control-col form-group col-6">
-              <label for="txtCode">Trạng thái tài sản</label>
-              <input data-field="assetStatus" data-control="autocomplete" data-source="furStatus"
-                placeholder="Trạng thái tài sản" class="form-control text-input" type="text">
+              <label for="txtPersonUseEdit">Người sử dụng</label>
+              <input id="txtPersonUseEdit" name="txtPersonUseEdit" data-field="personUse" placeholder="Người sử dụng" class="form-control text-input" type="text">
             </div>
           </div>
 
           <div class="dialog-row">
             <div class="input-control input-control-col form-group col-12">
-              <label for="txtCode">Nội dung</label>
-              <textarea data-field="content" rows="3" placeholder="Nội dung" class="form-control text-input"
+              <label for="txtDescriptionEdit">Mô tả</label>
+              <textarea id="txtDescriptionEdit" name="txtDescriptionEdit" data-field="description" rows="3" placeholder="Mô tả" class="form-control text-input"
                 type="text"></textarea>
             </div>
           </div>
