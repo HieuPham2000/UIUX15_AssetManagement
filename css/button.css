@@ -2,3 +2,9 @@
   height: 40px;
   min-width: 90px;
 }
+
+.btn-outline-secondary:focus {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
