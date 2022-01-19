@@ -49,6 +49,7 @@ class FormBase {
 
       me.isForm = true;
       me.rootEl.validate({
+        onfocusout: false,
         invalidHandler: function(event, validator) {
           var errors = validator.numberOfInvalids();
           if (errors) {
@@ -56,6 +57,7 @@ class FormBase {
               ? 'You missed 1 field. It has been highlighted'
               : 'You missed ' + errors + ' fields. They have been highlighted';
             $("label.error").text(message);
+            validator.errorList[0].element.focus();
           }
         }
       });
@@ -312,7 +314,7 @@ class FormBase {
         let source = $(item).data("source");
   
         $(item).autocomplete({
-          source: me[source],
+          source: me[source] || [],
           minLength: 0,
           open: function(e, ui) {
             $(this).next(".ic-dropdown").toggleClass("fa-caret-down").toggleClass("fa-caret-up");
@@ -325,7 +327,7 @@ class FormBase {
           $(this).select();
         });
   
-        $(item).parent().append(`<i class="ic-dropdown fas fa-caret-down"></i>`);
+        $(`<i class="ic-dropdown fas fa-caret-down"></i>`).insertAfter($(item));
   
       }
 
@@ -388,10 +390,17 @@ class FormBase {
    * 
    * show Toast
    */
-  showToast(msg) {
-    Toastify({
-      text: msg
-    }).showToast();
+  showToast(msg, type="success") {
+    switch(type) {
+      case "info":
+        toastr.info(msg); break;
+      case "success":
+        toastr.success(msg); break;
+      case "warning":
+        toastr.warning(msg); break;
+      case "error":
+        toastr.error(msg); break;
+    }
   }
 
 }

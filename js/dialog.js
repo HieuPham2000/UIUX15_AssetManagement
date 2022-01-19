@@ -40,7 +40,7 @@ class BaseDialog extends FormBase {
     let me = this;
 
     if (!me.validate()) {
-      me.showToast(Constants.Validate);
+      me.showToast(Constants.Validate, "error");
       return;
     }
 
