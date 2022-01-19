@@ -245,7 +245,7 @@ class ManageInfoAsset extends FormBase {
         });
         toastr.success(`Xóa thành công.`);
       }
-      showPopupMsg(`<span>Bạn có chắc chắn muốn xóa <b>tài sản ${dataRow.code} - ${dataRow.name}</b> hay không?</span>`, deleteFunc.bind(me, dataRow.code), "danger");
+      showPopupDanger(Constants.PopupHeaderDeleteRecord, `<span>Bạn có chắc chắn muốn xóa <b>tài sản ${dataRow.code} - ${dataRow.name}</b> hay không?</span>`, deleteFunc.bind(me, dataRow.code));
     }
     
   }
@@ -267,7 +267,7 @@ class ManageInfoAsset extends FormBase {
         });
         toastr.success(`Xóa thành công ${indexes.length} bản ghi.`);
       }
-      showPopupMsg(`<span>Bạn có chắc chắn muốn xóa <b>${indexes.length} bản ghi đã chọn</b> hay không?</span>`, deleteManyByIndexes, "danger");
+      showPopupDanger(Constants.PopupHeaderDeleteRecord, `<span>Bạn có chắc chắn muốn xóa <b>${indexes.length} bản ghi đã chọn</b> hay không?</span>`, deleteManyByIndexes, "danger");
     }
   }
 

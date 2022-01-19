@@ -66,20 +66,24 @@ class BaseDialog extends FormBase {
       me.parent.$table.updateRow(saveData);
       me.showToast(Constants.EditSuccess);
     }
-    me.hideForm();
+    me.hideForm(true);
   }
 
   /**
    * Ẩn form
    */
-  async hideForm() {
+  async hideForm(suspendCheckChange = false) {
     let me = this;
-    if (me.checkChange()) {
-      await showPopupMsg('Dữ liệu đã thay đổi, bạn có muốn lưu không?',  me.saveAction.bind(me));
+    if (!suspendCheckChange && me.checkChange()) {
+      // await showPopupMsg('Dữ liệu đã thay đổi, bạn có muốn lưu không?',  me.saveAction.bind(me));
+      await showPopupConfirmBeforeClose(me.saveAction.bind(me), me.hide.bind(me));
     }
-    $(me.selector).parent().hide();
+    me.hide();
+  }
 
-    
+  hide() {
+    let me = this;
+    $(me.selector).parent().hide(); 
   }
 
   checkChange() {

@@ -53,3 +53,56 @@ function showCustomPopup(func, option) {
   })
 }
 
+/**
+ * Show popup xác nhận trước khi đóng form
+ * @param {*} func 
+ * @param {*} option type, title, content
+ * @returns 
+ */
+ function showPopupConfirmBeforeClose(saveFunc, notSaveFunc) {
+
+  return new Promise(function(resolve, reject) {
+    let p = showPopup(() => {
+      saveFunc();
+      resolve();
+    }, resolve, "warning");
+    p.find('.text-header').html(Constants.PopupHeaderGeneral);
+    p.find('.popup-body-content').html(Constants.ConfirmBeforeCloseMsg);
+    p.find('.popup-footer').html(
+      `
+      <button data-command="Cancel" type="button" class="m-btn btn btn-outline-secondary">Hủy</button>
+      <div class="my-flex-space"></div>
+      <button data-command="Save" type="button" class="m-btn btn btn-success">Lưu</button>
+      <button data-command="NotSave" type="button" class="m-btn btn btn-outline-secondary">Không</button>
+      `
+    );
+
+    p.find('[data-command=Save]').click(saveFunc);
+    p.find('[data-command=Save]').click(hidePopup);
+    p.find('[data-command=NotSave]').click(notSaveFunc);
+    p.find('[data-command=NotSave]').click(hidePopup);
+    p.find('[data-command=Cancel]').click(() => {
+      hidePopup();
+    });
+  })
+}
+
+/**
+ * Show popup dạng danger
+ * @param {*} title 
+ * @param {*} msg 
+ * @param {*} saveFunc 
+ * @returns 
+ */
+function showPopupDanger(title, msg, saveFunc) {
+  return new Promise(function(resolve, reject) {
+    let p = showPopup(() => {
+      saveFunc();
+      resolve();
+    }, resolve, "danger");
+    p.find('.text-header').html(title);
+    p.find('.popup-body-content').html(msg);
+    p.find('[data-command=Save]').addClass('btn-danger');
+  })
+}
+

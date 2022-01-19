@@ -362,8 +362,9 @@
               <input data-focus="first" id="txtCodeEdit" name="txtCodeEdit" tabindex="1" data-field="code" placeholder="Mã tài sản" class="form-control text-input" type="text" required >
             </div>
             <div class="input-control input-control-col form-group col-6">
-              <label for="txtPersonManageEdit">Người quản lý</label>
-              <input id="txtPersonManageEdit" name="txtPersonManageEdit" tabindex="5" data-field="personManage" placeholder="Người quản lý" class="form-control text-input" type="text">
+              <label for="cboStatusEdit">Trạng thái <span class="required">(*)</span></label>
+              <input id="cboStatusEdit" name="cboStatusEdit" tabindex="4" data-control="autocomplete" data-field="status" data-source="cboStatusSource"
+                placeholder="Trạng thái" class="form-control text-input" type="text" required>
             </div>
           </div>
 
@@ -372,11 +373,11 @@
               <label for="txtNameEdit">Tên tài sản <span class="required">(*)</span></label>
               <input id="txtNameEdit" name="txtNameEdit" tabindex="2" data-field="name" placeholder="Tên tài sản" class="form-control text-input" type="text" required>
             </div>
-            
             <div class="input-control input-control-col form-group col-6">
-              <label for="txtPersonUseEdit">Người sử dụng</label>
-              <input id="txtPersonUseEdit" name="txtPersonUseEdit" tabindex="6" data-field="personUse" placeholder="Người sử dụng" class="form-control text-input" type="text">
+              <label for="txtPersonManageEdit">Người quản lý</label>
+              <input id="txtPersonManageEdit" name="txtPersonManageEdit" tabindex="5" data-field="personManage" placeholder="Người quản lý" class="form-control text-input" type="text">
             </div>
+            
 
           </div>
 
@@ -386,13 +387,9 @@
               <input id="cboGroupEdit" name="cboGroupEdit" tabindex="3" data-control="autocomplete" data-field="group" data-source="cboGroupSource"
                 placeholder="Nhóm tài sản" class="form-control text-input" type="text" required>
             </div>
-          </div>
-
-          <div class="dialog-row">
             <div class="input-control input-control-col form-group col-6">
-              <label for="cboStatusEdit">Trạng thái <span class="required">(*)</span></label>
-              <input id="cboStatusEdit" name="cboStatusEdit" tabindex="4" data-control="autocomplete" data-field="status" data-source="cboStatusSource"
-                placeholder="Trạng thái" class="form-control text-input" type="text" required>
+              <label for="txtPersonUseEdit">Người sử dụng</label>
+              <input id="txtPersonUseEdit" name="txtPersonUseEdit" tabindex="6" data-field="personUse" placeholder="Người sử dụng" class="form-control text-input" type="text">
             </div>
           </div>
 
@@ -406,7 +403,8 @@
 
         </div>
         <div class="dialog-footer">
-          <button data-command="Cancel" type="button" class="m-btn btn btn-secondary" tabindex="9" data-focus="last">Hủy</button>
+          <button data-command="Cancel" type="button" class="m-btn btn btn-outline-secondary" tabindex="9" data-focus="last">Hủy</button>
+          <div class="my-flex-space"></div>
           <button data-command="Save" type="button" class="m-btn btn btn-success" tabindex="8">Lưu</button>
         </div>
       </form>
@@ -424,7 +422,8 @@
         </div>
         <div class="popup-footer">
           <button data-command="Cancel" type="button" class="m-btn btn btn-outline-secondary">Hủy</button>
-          <button data-command="Save" type="button" class="m-btn btn btn-danger">Xóa</button>
+          <div class="my-flex-space"></div>
+          <button data-command="Save" type="button" class="m-btn btn">Xóa</button>
         </div>
       </div>
     </div>
