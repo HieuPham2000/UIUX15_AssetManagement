@@ -8,6 +8,7 @@ class ManageInfoAsset extends FormBase {
     me.findControl("#btnAddAsset").click(() => {
       me.addAction();
     });
+    me.createFocusTrap(me.$dialog);
   }
 
   getUrlParameter(sParam) {
@@ -348,6 +349,29 @@ class ManageInfoAsset extends FormBase {
     let me = this;
     let data = me.$table.getData();
     return Math.max(...data.map(x => x.id) + 1);
+  }
+
+  /**
+   * tạo focus trap
+   */
+  createFocusTrap($container) {
+    let $firstControl = $container.find("[data-focus=first]");
+    let $lastControl = $container.find("[data-focus=last]");
+    $firstControl.on('keydown', (e) => {
+      var keyCode = e.keyCode || e.which;
+      if (e.shiftKey && keyCode == '9') {
+        e.preventDefault();
+        $lastControl.focus();
+      }
+    });
+
+    $lastControl.on('keydown', (e) => {
+      var keyCode = e.keyCode || e.which;
+      if (!e.shiftKey && keyCode == '9') {
+        e.preventDefault();
+        $firstControl.focus();
+      }
+    });
   }
 }
 

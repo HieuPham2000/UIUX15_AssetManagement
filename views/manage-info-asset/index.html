@@ -359,7 +359,7 @@
           <div class="dialog-row">
             <div class="input-control input-control-col form-group col-6">
               <label for="txtCodeEdit">Mã tài sản <span class="required">(*)</span></label>
-              <input id="txtCodeEdit" name="txtCodeEdit" tabindex="1" data-field="code" placeholder="Mã tài sản" class="form-control text-input" type="text" required >
+              <input data-focus="first" id="txtCodeEdit" name="txtCodeEdit" tabindex="1" data-field="code" placeholder="Mã tài sản" class="form-control text-input" type="text" required >
             </div>
             <div class="input-control input-control-col form-group col-6">
               <label for="txtPersonManageEdit">Người quản lý</label>
@@ -406,7 +406,7 @@
 
         </div>
         <div class="dialog-footer">
-          <button data-command="Cancel" type="button" class="m-btn btn btn-secondary" tabindex="9">Hủy</button>
+          <button data-command="Cancel" type="button" class="m-btn btn btn-secondary" tabindex="9" data-focus="last">Hủy</button>
           <button data-command="Save" type="button" class="m-btn btn btn-success" tabindex="8">Lưu</button>
         </div>
       </form>

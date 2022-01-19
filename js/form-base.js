@@ -403,6 +403,29 @@ class FormBase {
     }
   }
 
+    /**
+   * tạo focus trap
+   */
+     createFocusTrap($container) {
+      let $firstControl = $container.find("[data-focus=first]");
+      let $lastControl = $container.find("[data-focus=last]");
+      $firstControl.on('keydown', (e) => {
+        var keyCode = e.keyCode || e.which;
+        if (e.shiftKey && keyCode == '9') {
+          e.preventDefault();
+          $lastControl.focus();
+        }
+      });
+  
+      $lastControl.on('keydown', (e) => {
+        var keyCode = e.keyCode || e.which;
+        if (!e.shiftKey && keyCode == '9') {
+          e.preventDefault();
+          $firstControl.focus();
+        }
+      });
+    }
+
 }
 
 /**
