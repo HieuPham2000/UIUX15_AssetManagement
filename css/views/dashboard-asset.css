@@ -66,3 +66,10 @@
   top: 0;
   z-index: 100;
 }
+
+/* this page */
+.switch-control-label {
+  font-weight: 400 !important;
+  color: #007bff;
+  cursor: pointer;
+}

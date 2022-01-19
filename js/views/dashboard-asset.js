@@ -69,5 +69,12 @@ new Chart(chartGroupDepreciationCanvas, {
   type: 'doughnut',
   data: chartGroupDepreciationData,
   options: donutOptions
+});
+
+
+$(() => {
+  $("#switchRowStatusAssetBoxData").change(() => {
+    $("#rowStatusAssetBoxData").slideToggle();
+  })
 })
 
