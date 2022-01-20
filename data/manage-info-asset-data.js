@@ -57,11 +57,11 @@ const manageInfoAssetData = [
   {
     id: 6,
     code: "TS06",
-    name: "Laptop Dell Latitude 7480",
-    group: "Máy móc",
-    status: "Sẵn sàng sử dụng",
+    name: "Mặt bằng tầng 3 tòa nhà Technosoft Duy Tân - Cầu Giấy",
+    group: "Mặt bằng",
+    status: "Đang sử dụng",
     personManage: "Phạm Trung Hiếu",
-    personUse: "",
+    personUse: "Nguyễn Minh Tuân",
     description: "",
 
   },
@@ -90,11 +90,11 @@ const manageInfoAssetData = [
   {
     id: 9,
     code: "TS09",
-    name: "Laptop Dell Latitude 7480",
-    group: "Máy móc",
-    status: "Sẵn sàng sử dụng",
+    name: "Xe máy Suzuki ShogunZ",
+    group: "Xe cộ",
+    status: "Đang sử dụng",
     personManage: "Phạm Trung Hiếu",
-    personUse: "",
+    personUse: "Phạm Hữu Anh Quốc",
     description: "",
 
   },

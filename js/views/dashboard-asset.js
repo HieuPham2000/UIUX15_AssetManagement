@@ -9,7 +9,7 @@ var chartGroupAmountData = {
   ],
   datasets: [
     {
-      data: [2, 5, 10, 4],
+      data: [1, 1, 18, 0],
       backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef'],
     }
   ]
@@ -36,7 +36,7 @@ var chartGroupValueData = {
   ],
   datasets: [
     {
-      data: [200000000, 50000000, 250000000, 120000000],
+      data: [50000000, 12000000, 250000000, 0],
       backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef'],
     }
   ]
@@ -59,7 +59,7 @@ var chartGroupDepreciationData = {
   ],
   datasets: [
     {
-      data: [33000000, 5000000, 15000000, 2500000],
+      data: [1000000, 300000, 3500000, 0],
       backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef'],
     }
   ]
