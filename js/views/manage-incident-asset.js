@@ -3,7 +3,7 @@ class ManageIncidentAsset extends FormBase {
   constructor() {
     super();
     let me = this;
-    me.fileName = "asset-info";
+    me.fileName = "asset-incident";
     me.myInit();
     me.findControl("#btnAddAsset").click(() => {
       me.addAction();

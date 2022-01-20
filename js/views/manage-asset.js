@@ -3,7 +3,7 @@ class ManageAsset extends FormBase {
   constructor() {
     super();
     let me = this;
-    me.fileName = "asset-info";
+    me.fileName = "manage-asset";
     me.myInit();
     me.findControl("#btnAddAsset").click(() => {
       me.addAction();

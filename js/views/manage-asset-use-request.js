@@ -3,7 +3,7 @@ class ManageAssetUseRequest extends FormBase {
   constructor() {
     super();
     let me = this;
-    me.fileName = "asset-info";
+    me.fileName = "asset-request-use";
     me.myInit();
     me.findControl("#btnAddAsset").click(() => {
       me.addAction();
