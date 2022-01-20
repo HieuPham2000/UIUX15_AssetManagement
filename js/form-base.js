@@ -1,7 +1,7 @@
 class FormBase {
 
   constructor() {
-
+    let me = this;
     this.selector = "body";
 
     this.initProperty();
@@ -12,6 +12,10 @@ class FormBase {
     }
     this.initEvent();
     this.initAutocomplete();
+
+    me.findControl("button[name=refresh]").click(() => {
+      me.showToast("Dữ liệu đã được làm mới!");
+    })
   }
 
   initFromProperty() {
@@ -50,6 +54,9 @@ class FormBase {
       me.isForm = true;
       me.rootEl.validate({
         onfocusout: false,
+        onkeyup: function(element) {
+          return $(element).valid();
+        },
         invalidHandler: function(event, validator) {
           var errors = validator.numberOfInvalids();
           if (errors) {
