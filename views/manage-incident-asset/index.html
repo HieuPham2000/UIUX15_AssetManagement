@@ -2,123 +2,82 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quản lý sự cố</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"> -->
-  <link rel="stylesheet" href="../../lib/fontawesome-5.15.1/css/all.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quản lý sự cố tài sản | Quản lý tài sản</title>
+
+
+  <link rel="stylesheet" href="../../css/views/all.css">
   <link rel="stylesheet" href="../../lib/jquery-ui-1.12.1/jquery-ui.min.css">
   <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css">
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-  <link rel="stylesheet" href="../../css/index.css">
-  <link rel="stylesheet" href="../../css/override.css">
-  <link rel="stylesheet" href="../../css/dialog.css">
-  <link rel="stylesheet" href="../../css/input.css">
-  <link rel="stylesheet" href="../../css/button.css">
-  <link rel="stylesheet" href="../../css/autocomplete.css">
-  <link rel="stylesheet" href="../../css/table.css">
-  <link rel="stylesheet" href="../../css/toggle-popup.css">
-  <link rel="stylesheet" href="../../css/popup.css">
-  <link rel="stylesheet" href="../../css/views/all.css">
+  <link rel="stylesheet" href="../../css/views/manage-info-asset.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
 </head>
 
-<body>
-  <div id="dialog-overlay" class="overlay" style="display: none">
-    <form id="dialog" class="dialog">
-      <div class="dialog-header">
-        <div class="text-header">Chỉnh sửa thông tin sự cố</div>
-        <i class="dialog-close pointer fas fa-times"></i>
-      </div>
-      <div class="dialog-body">
+<body class="hold-transition sidebar-mini layout-fixed body">
+  <div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="index.html" class="nav-link">Trang chủ</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="mailto:hieu.pt183535@sis.hust.edu.vn" class="nav-link">Liên hệ</a>
+        </li>
+      </ul>
 
-        <div class="dialog-row">
-          <div class="input-control input-control-col form-group col-6">
-            <label for="txtCode">Mã sự cố <span style="color:red">(*)</span></label>
-            <input required data-field="incidentCode" placeholder="Mã sự cố" class="form-control text-input" type="text">
+      <!-- Right navbar links -->
+      <ul class="navbar-nav ml-auto">
+        <!-- Navbar Search -->
+        <li class="nav-item">
+          <a class="nav-link dev-feat" href="#" role="button">
+            <i class="fas fa-search"></i>
+          </a>
+        </li>
+
+        <!-- Notifications Dropdown Menu -->
+        <li class="nav-item dropdown">
+          <a class="nav-link" data-toggle="dropdown" href="#">
+            <i class="far fa-bell"></i>
+            <span class="badge badge-warning navbar-badge">7</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <span class="dropdown-item dropdown-header">7 thông báo</span>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item dev-feat">
+              <i class="fas fa-envelope mr-2"></i> 4 tin nhắn mới
+              <span class="float-right text-muted text-sm">3 phút trước</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item dev-feat">
+              <i class="fas fa-file mr-2"></i> 3 báo cáo mới
+              <span class="float-right text-muted text-sm">2 ngày trước</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item dropdown-footer dev-feat">Xem tất cả thông báo</a>
           </div>
-          <div class="input-control input-control-col form-group col-6">
-            <label for="txtCode">Loại sự cố</label>
-            <input data-control="autocomplete" data-field="incidentType" data-source="incidentType"
-              placeholder="Loại sự cố" class="form-control text-input" type="text">
-          </div>
-        </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex dev-feat" href="#" role="button" style="align-items: center;">
+            <div class="user-panel" style="overflow: unset;">
+              <div class="image">
+                <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+              </div>
+            </div>
+          </a>
+        </li>
 
-        <div class="dialog-row">
-          <div class="input-control input-control-col form-group col-6">
-            <label for="txtCode">Người báo cáo</label>
-            <input data-field="reportBy" placeholder="Người báo cáo" class="form-control text-input" type="text">
-          </div>
-          <div class="input-control input-control-col form-group col-6">
-            <label for="txtCode">Ngày phát hiện</label>
-            <input data-field="reportDate" placeholder="Ngày phát hiện" class="form-control text-input" type="date">
-          </div>
-        </div>
+      </ul>
+    </nav>
+    <!-- /.navbar -->
 
-        <div class="dialog-row">
-          <div class="input-control input-control-col form-group col-12">
-            <label for="txtCode">Tài sản</label>
-            <input data-field="assetName" placeholder="Tài sản" class="form-control text-input" type="text">
-          </div>
-        </div>
-
-        <div class="dialog-row">
-          <div class="input-control input-control-col form-group col-6">
-            <label for="txtCode">Trạng thái</label>
-            <input data-field="status" data-control="autocomplete" data-source="incidentStatus" placeholder="Trạng thái"
-              class="form-control text-input" type="text">
-          </div>
-          <div class="input-control input-control-col form-group col-6">
-            <label for="txtCode">Trạng thái tài sản</label>
-            <input data-field="assetStatus" data-control="autocomplete" data-source="furStatus"
-              placeholder="Trạng thái tài sản" class="form-control text-input" type="text">
-          </div>
-        </div>
-
-        <div class="dialog-row">
-          <div class="input-control input-control-col form-group col-12">
-            <label for="txtCode">Nội dung</label>
-            <textarea data-field="content" rows="3" placeholder="Nội dung" class="form-control text-input"
-              type="text"></textarea>
-          </div>
-        </div>
-
-      </div>
-      <div class="dialog-footer">
-        <button data-command="Cancel" type="button" class="m-btn btn btn-outline-secondary">Hủy</button>
-        <button data-command="Save" type="button" class="m-btn btn btn-success">Lưu</button>
-      </div>
-    </form>
-  </div>
-
-  <div id="msg-popup-overlay" class="overlay" style="display: none">
-    <div class="popup">
-      <div class="popup-header">
-        <div class="text-header">Thông báo</div>
-        <i class="popup-close pointer fas fa-times"></i>
-      </div>
-      <div class="popup-body">
-        Bạn có chắc muốn xóa bản ghi này không?
-      </div>
-      <div class="popup-footer">
-        <button data-command="Cancel" type="button" class="m-btn btn btn-outline-secondary">Hủy</button>
-        <button data-command="Save" type="button" class="m-btn btn btn-success">Có</button>
-      </div>
-    </div>
-  </div>
-
-  <div title="Ẩn/ hiện cột" class="toggle-popup" style="display: none">
-    <div class="toggle-content"></div>
-    <div class="toggle-footer">
-      <button data-command="Cancel" type="button" class="m-btn btn btn-outline-secondary">Hủy</button>
-      <button data-command="Save" type="button" class="m-btn btn btn-success">Lưu</button>
-    </div>
-  </div>
-
-  <div class="side-bar">
+    <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="index.html" class="brand-link">
@@ -135,8 +94,8 @@
             <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block">Nguyễn Văn Thông</a>
-            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            <a href="#" class="d-block dev-feat">Nguyễn Văn Thông</a>
+            <a href="#" class="dev-feat"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
         </div>
 
@@ -144,7 +103,7 @@
         <nav class="mt-2" style="padding-bottom: 50px;">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="#" class="nav-link dev-feat">
                 <i class="nav-icon fas fa-home"></i>
                 <p>
                   Trang chủ
@@ -152,7 +111,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="#" class="nav-link dev-feat">
                 <i class="nav-icon fas fa-newspaper"></i>
                 <p>
                   Bảng tin cá nhân
@@ -160,7 +119,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="#" class="nav-link dev-feat">
                 <i class="nav-icon fas fa-newspaper"></i>
                 <p>
                   Bảng tin đơn vị
@@ -178,13 +137,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="#" class="nav-link dev-feat">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Tổng quan công việc đơn vị</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="#" class="nav-link dev-feat">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Danh sách công việc đơn vị</p>
                   </a>
@@ -202,13 +161,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="#" class="nav-link dev-feat">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Tổng quan công việc Cá nhân</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="#" class="nav-link dev-feat">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Danh sách công việc Cá nhân</p>
                   </a>
@@ -225,37 +184,37 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="#" class="nav-link dev-feat">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Tổng quan KPI đơn vị</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="#" class="nav-link dev-feat">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Khởi tạo KPI đơn vị</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="#" class="nav-link dev-feat">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Quản lý KPI đơn vị</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="#" class="nav-link dev-feat">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Phân tích tính hợp lý trong thiết lập KPI đơn vị</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="#" class="nav-link dev-feat">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Tổng quan KPI nhân viên</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="#" class="nav-link dev-feat">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Đánh giá KPI nhân viên</p>
                   </a>
@@ -272,19 +231,19 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="#" class="nav-link dev-feat">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Tổng quan KPI cá nhân</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="#" class="nav-link dev-feat">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Khởi tạo KPI cá nhân</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="#" class="nav-link dev-feat">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Quản lý KPI cá nhân</p>
                   </a>
@@ -309,17 +268,17 @@
                 <li class="nav-item">
                   <a href="../manage-info-asset/index.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Quản lý thông tin tài sản</p>
+                    <p>Quản lý sự cố tài sản</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link dev-feat">
+                  <a href="../manage-depreciation-asset/index.html" class="nav-link dev-feat">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Quản lý khấu hao tài sản</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="../manage-maintainance-asset/index.html" class="nav-link dev-feat">
+                  <a href="../manage-maintainance-asset/index.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Quản lý bảo trì - sửa chữa</p>
                   </a>
@@ -331,7 +290,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="../manage-asset-use-request/index.html" class="nav-link dev-feat">
+                  <a href="../manage-asset-use-request/index.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Quản lý đăng ký sử dụng</p>
                   </a>
@@ -375,7 +334,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="#" class="nav-link dev-feat">
                 <i class="nav-icon fas fa-info-circle"></i>
                 <p>
                   Hướng dẫn sử dụng
@@ -388,160 +347,287 @@
       </div>
       <!-- /.sidebar -->
     </aside>
-  </div>
-  <div class="content">
-    <header>
-      <nav style="margin-left: 12px;" class="main-header navbar navbar-expand navbar-white navbar-light">
-        <!-- Left navbar links -->
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-          </li>
-          <li class="nav-item d-none d-sm-inline-block">
-            <a href="index.html" class="nav-link">Trang chủ</a>
-          </li>
-          <li class="nav-item d-none d-sm-inline-block">
-            <a href="mailto:hieu.pt183535@sis.hust.edu.vn" class="nav-link">Liên hệ</a>
-          </li>
-        </ul>
-  
-        <!-- Right navbar links -->
-        <ul class="navbar-nav ml-auto">
-          <!-- Navbar Search -->
-          <li class="nav-item">
-            <a class="nav-link dev-feat" href="#" role="button">
-              <i class="fas fa-search"></i>
-            </a>
-          </li>
-  
-          <!-- Notifications Dropdown Menu -->
-          <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-              <i class="far fa-bell"></i>
-              <span class="badge badge-warning navbar-badge">7</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-              <span class="dropdown-item dropdown-header">7 thông báo</span>
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item dev-feat">
-                <i class="fas fa-envelope mr-2"></i> 4 tin nhắn mới
-                <span class="float-right text-muted text-sm">3 phút trước</span>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item dev-feat">
-                <i class="fas fa-file mr-2"></i> 3 báo cáo mới
-                <span class="float-right text-muted text-sm">2 ngày trước</span>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item dropdown-footer dev-feat">Xem tất cả thông báo</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link d-flex dev-feat" href="#" role="button" style="align-items: center;">
-              <div class="user-panel" style="overflow: unset;">
-                <div class="image">
-                  <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                </div>
-              </div>
-            </a>
-          </li>
-          
-        </ul>
-      </nav>
-    </header>
-    <div class="main-content">
-      <div class="content-header">
-        <h1 class="header-text">
-          Quản lý sự cố tài sản
-        </h1>
-      </div>
-      <div class="content-body">
-        <div class="content-toolbar">
 
-          <div class="row-item">
-            <div class="input-control form-group">
-              <label for="txtCode">Mã tài sản</label>
-              <input data-search-field="assetCode" placeholder="Mã tài sản" class="form-control text-input" type="text">
-            </div>
-            <div class="input-control form-group">
-              <label for="txtCode">Tên tài sản</label>
-              <input data-search-field="assetName" placeholder="Tên tài sản" class="form-control text-input" type="text">
-            </div>
-          </div>
+    <div id="dialog-overlay" class="overlay" style="display: none">
+      <form id="dialog" class="dialog">
+        <div class="dialog-header">
+          <div class="text-header">Chỉnh sửa thông tin tài sản</div>
+          <i class="dialog-close pointer fas fa-times"></i>
+        </div>
+        <div class="dialog-body">
 
-          <div class="row-item">
-            <div class="input-control form-group">
-              <label for="txtCode">Mã sự cố</label>
-              <input data-search-field="incidentCode" placeholder="Mã sự cố" class="form-control text-input" type="text">
+          <div class="dialog-row">
+            <div class="input-control input-control-col form-group col-6">
+              <label for="txtCode">Mã sự cố <span style="color:red">(*)</span></label>
+              <input required data-field="incidentCode" placeholder="Mã sự cố" class="form-control text-input" type="text" disabled>
             </div>
-            <div class="input-control form-group">
+            <div class="input-control input-control-col form-group col-6">
               <label for="txtCode">Loại sự cố</label>
-              <input data-control="autocomplete" data-source="incidentType" data-search-field="incidentType"
+              <input data-control="autocomplete" data-field="incidentType" data-source="incidentType"
                 placeholder="Loại sự cố" class="form-control text-input" type="text">
             </div>
           </div>
-
-          <div class="row-item">
-            <div class="input-control form-group">
-              <label for="txtCode">Trạng thái</label>
-              <input data-control="autocomplete" data-source="incidentStatus" data-search-field="status"
-                placeholder="Trạng thái" class="form-control text-input" type="text">
+  
+          <div class="dialog-row">
+            <div class="input-control input-control-col form-group col-6">
+              <label for="txtCode">Người báo cáo</label>
+              <input data-field="reportBy" placeholder="Người báo cáo" class="form-control text-input" type="text" disabled>
             </div>
-
-            <button data-control="searchControl" type="button" class="m-btn btn btn-success">Tìm kiếm</button>
-
-            <button type="button" id="export" data-single-command="export" class="m-btn btn btn-primary">Xuất báo cáo</button>
-
-            <i data-control="toggleColumn" class="setting-button pointer fas fa-cog"></i>
-
+            <div class="input-control input-control-col form-group col-6">
+              <label for="txtCode">Trạng thái</label>
+              <input data-field="status" data-control="autocomplete" data-source="incidentStatus" placeholder="Trạng thái"
+                class="form-control text-input" type="text">
+            </div>
           </div>
-
+  
+          <div class="dialog-row">
+            <div class="input-control input-control-col form-group col-6">
+              <label for="txtCode">Tài sản</label>
+              <input data-field="assetName" placeholder="Tài sản" class="form-control text-input" type="text" disabled>
+            </div>
+          </div>
+  
+          <div class="dialog-row">
+            <div class="input-control input-control-col form-group col-12">
+              <label for="txtCode">Mô tả</label>
+              <textarea data-field="content" rows="3" placeholder="Nội dung" class="form-control text-input"
+                type="text"></textarea>
+            </div>
+          </div>
+  
         </div>
-
-        <div class="content-table">
-          <table id="table" data-toggle="table" data-pagination="true" data-page-size="5" data-unique-id="code">
-            <thead>
-              <tr>
-                <th data-width="50" data-checkbox="true"></th>
-                <th data-field="incidentCode" data-width="100">Mã tài sản</th>
-                <th data-field="assetName">Tên tài sản</th>
-                <th data-toggle="true" data-field="incidentType" data-width="150">Loại sự cố</th>
-                <th data-toggle="true" data-field="status" data-width="150">Trạng thái</th>
-                <th data-toggle="true" data-field="content" data-width="200">Nội dung</th>
-                <th data-field="_action" data-formatter="renderActionBtn" data-width="80">Hành động</th>
-              </tr>
-            </thead>
-
-          </table>
+        <div class="dialog-footer">
+          <button data-command="Cancel" type="button" class="m-btn btn btn-outline-secondary" tabindex="9" data-focus="last">Hủy</button>
+          <div class="my-flex-space"></div>
+          <button data-command="Save" type="button" class="m-btn btn btn-success" tabindex="8">Lưu</button>
         </div>
+      </form>
+    </div>
 
+    <div id="msg-popup-overlay" class="overlay" style="display: none">
+      <div class="popup">
+        <div class="popup-header">
+          <div class="text-header">Xóa bản ghi</div>
+          <i class="popup-close pointer fas fa-times"></i>
+        </div>
+        <div class="popup-body">
+          <div class="popup-body-icon icon-danger"></div>
+          <div class="popup-body-content">Bạn có chắc muốn xóa bản ghi này không?</div>
+        </div>
+        <div class="popup-footer">
+          <button data-command="Cancel" type="button" class="m-btn btn btn-outline-secondary">Hủy</button>
+          <div class="my-flex-space"></div>
+          <button data-command="Save" type="button" class="m-btn btn">Xóa</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0">Quản lý sự cố tài sản</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                <li class="breadcrumb-item active">Quản lý sự cố tài sản</li>
+              </ol>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+
+
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <!-- Main row -->
+          <div class="row  my-row-container">
+            <div class="col-12 col-sm-12 my-flex-1-column-container">
+              <div class="card my-card">
+
+                <div class="content-toolbar">
+                  <div class="row row-item">
+                    <div class="input-control form-group">
+                      <label for="txtCode">Mã sự cố</label>
+                      <input data-search-field="incidentCode" placeholder="Mã sự cố" class="form-control text-input" type="text">
+                    </div>
+                    <div class="input-control form-group">
+                      <label for="txtCode">Loại sự cố</label>
+                      <input data-control="autocomplete" data-source="incidentType" data-search-field="incidentType"
+                        placeholder="Loại sự cố" class="form-control text-input" type="text">
+                    </div>
+                  </div>
+
+                  <div class="row row-item">
+                      <div class="input-control form-group">
+                        <label for="txtCode">Mã tài sản</label>
+                        <input data-search-field="assetCode" placeholder="Mã tài sản" class="form-control text-input" type="text">
+                      </div>
+                      <div class="input-control form-group">
+                        <label for="txtCode">Tên tài sản</label>
+                        <input data-search-field="assetName" placeholder="Tên tài sản" class="form-control text-input" type="text">
+                      </div>
+                      <div class="input-control form-group">
+                        <label for="txtCode">Trạng thái</label>
+                        <input data-control="autocomplete" data-source="incidentStatus" data-search-field="status"
+                          placeholder="Trạng thái" class="form-control text-input" type="text">
+                      </div>
+                      <button data-control="searchControl" type="button" class="m-btn btn btn-success" style="margin-left: 32px;">Lọc</button>
+                      <div class="my-flex-space"></div>
+                    </div>
+
+                </div>
+                <div id="toolbar">
+                  <div class="input-control form-group">
+                    <label for="selectExportDataType">Chế độ xuất dữ liệu</label>
+                    <select id="selectExportDataType">
+                      <option value="selected">Dữ liệu được chọn</option>
+                      <option value="basic">Dữ liệu hiện tại</option>
+                      <option value="all" selected>Toàn bộ dữ liệu</option>
+                    </select>
+                  </div>
+                  
+                </div>
+                <div class="content-table">
+                  <table 
+                    id="table" 
+                    data-height="400"
+                    data-toggle="table"
+                    data-unique-id="code"
+                    data-toolbar="#toolbar"
+                    data-search="true"
+                    data-show-refresh="true"
+                    data-show-columns="true"
+                    data-show-columns-search="true"
+                    data-show-columns-toggle-all="true"
+                    data-show-export="true"
+                    data-export-data-type="all"
+                    data-export-types="['json', 'xml', 'csv', 'txt', 'doc', 'excel', 'xlsx']"
+                    data-click-to-select="true"
+                    data-minimum-count-columns="2"
+                    data-show-pagination-switch="true"
+                    
+                    data-filter-toolbar-switch="true"
+
+                    data-id-field="index"
+                    data-pagination="true"
+                    data-pagination-loop="false"
+                    data-page-size="10"
+                    data-page-list="[5, 10, 25, 50, all]">
+                    
+                    <thead>
+                      <tr>
+                        <th data-width="50" data-checkbox="true" data-force-hide="true"></th>
+                        <th data-formatter="renderIndexFormatter" data-width="100" data-sortable="true">STT</th>
+                        <th data-field="incidentCode" data-sortable="true">Mã sự cố</th>
+                        <th data-field="assetCode" data-sortable="true">Mã tài sản</th>
+                        <th data-field="assetName" data-sortable="true">Tên tài sản</th>
+                        <th data-field="incidentType" data-sortable="true">Loại sự cố</th>
+                        <th data-field="status" data-sortable="true" data-cell-style="cellStyleStatus">Trạng thái</th>
+                        <th data-field="content" data-sortable="true">Mô tả</th>
+                        <th data-field="_action" data-formatter="renderActionBtn" data-width="80" data-force-hide="true">Hành động</th>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+                <!-- /.card -->
+              </div>
+            </div>
+          </div>
+          <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+      <footer class="main-footer">
+        <strong>Copyright &copy; 2021-2022 <a href="#">UIUX15</a></strong>
+        <div class="float-right d-none d-sm-inline-block">
+          <b>Phiên bản</b> 1.0.0
+        </div>
+      </footer>
+    </div>
+    <!-- /.content-wrapper -->
+
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- jQuery -->
+  <script src="../../plugins/jquery/jquery.min.js"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
+  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+  <script>
+    $.widget.bridge('uibutton', $.ui.button)
+  </script>
+  <!-- Bootstrap 4 -->
+  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- ChartJS -->
+  <script src="../../plugins/chart.js/Chart.min.js"></script>
+  <!-- Sparkline -->
+  <script src="../../plugins/sparklines/sparkline.js"></script>
+  <!-- JQVMap -->
+  <script src="../../plugins/jqvmap/jquery.vmap.min.js"></script>
+  <script src="../../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+  <!-- jQuery Knob Chart -->
+  <script src="../../plugins/jquery-knob/jquery.knob.min.js"></script>
+
+  <!-- Summernote -->
+  <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
+  <!-- SweetAlert2 -->
+  <script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
+  <!-- Toastr -->
+  <script src="../../plugins/toastr/toastr.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="../../dist/js/adminlte.js"></script>
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <script src="../../dist/js/pages/dashboard.js"></script>
+
+  <!--Export table (SheetJS) in XLSX (Excel 2007+ XML format) format-->
+  <script src="https://cdn.bootcss.com/xlsx/0.14.2/xlsx.core.min.js"></script>
+  <!--Support for IE includes es6-promise before html2canvas-->
+  <script src="https://cdn.bootcss.com/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
+  <script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+
+  <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
   <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
-  <!-- <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script> -->
-  <script src="../../lib/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+  <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/extensions/export/bootstrap-table-export.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
+  <!-- InputMask -->
+  <script src="../../plugins/moment/moment.min.js"></script>
+  <script src="../../plugins/inputmask/jquery.inputmask.min.js"></script>
+  <!-- date-range-picker -->
+  <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
+  <!-- Select2 -->
+  <script src="../../plugins/select2/js/select2.full.min.js"></script>  
+
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.min.js" integrity="sha512-BMIFH0QGwPdinbGu7AraCzG9T4hKEkcsbbr+Uqv8IY3G5+JTzs7ycfGbz7Xh85ONQsnHYrxZSXgS1Pdo9r7B6w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.17.1/extensions/export/bootstrap-table-export.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/tableExport.min.js"></script>
   <script src="../../js/bootstrap-table-vi-VN.js"></script>
   <script src="../../js/popup.js"></script>
   <script src="../../js/constant.js"></script>
+
+
   <script src="../../js/form-base.js"></script>
-  <script src="../../js/manage-incident-asset.js"></script>
+  <script src="../../js/views/manage-incident-asset.js"></script>
   <script src="../../js/dialog.js"></script>
   <script src="../../js/toggle-column.js"></script>
+  <script src="../../js/views/main.js"></script>
+
 </body>
 
 </html>
