@@ -9,6 +9,8 @@ class ManageInfoAsset extends FormBase {
       me.addAction();
     });
     me.createFocusTrap(me.$dialog);
+
+    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' });
   }
 
   getUrlParameter(sParam) {
@@ -104,6 +106,81 @@ class ManageInfoAsset extends FormBase {
       }
     });
   }
+
+    /**
+   * Khởi tạo validate
+   */
+    //  initValidate() {
+    //   let me = this;
+
+    //   $.validator.addMethod("validateCodeUnique", function (value, element) {
+    //     let id = me.$dialog.find(".dialog").data("id");
+    //     let data = me.$table.getData();
+    //     if(typeof id != undefined && id != null) {
+    //       data = data.filter(x => x.id != id);
+    //     }
+
+    //     let index = data.findIndex(x => x.code == value);
+    //     if(index > -1) {
+    //       return false;
+    //     }
+    //     return true;
+    //   }, "Trường này không được phép trùng!");
+  
+    //   $("#txtCodeEdit").rules( "add", {
+    //     validateCodeUnique: true,
+    //     maxlength: 10,
+    //     messages: {
+    //       validateCodeUnique: "Mã tài sản không được phép trùng!",
+    //     }
+    //   });
+
+    //   if (me.rootEl.prop("tagName") == "FORM") {
+  
+    //     jQuery.extend(jQuery.validator.messages, {
+    //       required: "Trường này không được phép để trống!",
+    //       remote: "Please fix this field.",
+    //       email: "Please enter a valid email address.",
+    //       url: "Please enter a valid URL.",
+    //       date: "Please enter a valid date.",
+    //       dateISO: "Please enter a valid date (ISO).",
+    //       number: "Please enter a valid number.",
+    //       digits: "Please enter only digits.",
+    //       creditcard: "Please enter a valid credit card number.",
+    //       equalTo: "Please enter the same value again.",
+    //       accept: "Please enter a value with a valid extension.",
+    //       maxlength: jQuery.validator.format("Please enter no more than {0} characters."),
+    //       minlength: jQuery.validator.format("Please enter at least {0} characters."),
+    //       rangelength: jQuery.validator.format("Please enter a value between {0} and {1} characters long."),
+    //       range: jQuery.validator.format("Please enter a value between {0} and {1}."),
+    //       max: jQuery.validator.format("Please enter a value less than or equal to {0}."),
+    //       min: jQuery.validator.format("Please enter a value greater than or equal to {0}.")
+    //   });
+  
+    //     me.isForm = true;
+    //     me.rootEl.validate({
+    //       onfocusout: function( element, event ) {
+    //         $(element).valid();
+    //       },
+    //       invalidHandler: function(event, validator) {
+    //         var errors = validator.numberOfInvalids();
+    //         if (errors) {
+    //           var message = errors == 1
+    //             ? 'You missed 1 field. It has been highlighted'
+    //             : 'You missed ' + errors + ' fields. They have been highlighted';
+    //           $("label.error").text(message);
+    //           validator.errorList[0].element.focus();
+    //         }
+    //       },
+    //       onkeyup: function( element, event ) {
+    //         $(element).valid();
+    //       },
+          
+    //     });
+
+
+    //   }
+    // }
 
 
   /**
@@ -224,10 +301,10 @@ class ManageInfoAsset extends FormBase {
    * Lấy ra danh sách index các bản ghi được chọn
    * @returns 
    */
-  getIndexSelections() {
+  getIdSelections() {
     let me = this;
     return $.map(me.$table.bootstrapTable('getSelections'), function (row) {
-      return row.index
+      return row.id
     })
   }
 
@@ -238,14 +315,14 @@ class ManageInfoAsset extends FormBase {
   deleteAction(dataRow) {
     let me = this;
     if(dataRow) {
-      let deleteFunc = (code) => {
+      let deleteFunc = (id) => {
         me.$table.bootstrapTable('remove', {
-          field: 'code',
-          values: [code]
+          field: 'id',
+          values: [id]
         });
         toastr.success(`Xóa thành công.`);
       }
-      showPopupDanger(Constants.PopupHeaderDeleteRecord, `<span>Bạn có chắc chắn muốn xóa <b>tài sản ${dataRow.code} - ${dataRow.name}</b> hay không?</span>`, deleteFunc.bind(me, dataRow.code));
+      showPopupDanger(Constants.PopupHeaderDeleteRecord, `<span>Bạn có chắc chắn muốn xóa <b>tài sản ${dataRow.code} - ${dataRow.name}</b> hay không?</span>`, deleteFunc.bind(me, dataRow.id));
     }
     
   }
@@ -255,19 +332,19 @@ class ManageInfoAsset extends FormBase {
    */
   deleteManyAction() {
     let me = this;
-    let indexes = me.getIndexSelections();
-    if(indexes == null || indexes.length == 0) {
+    let ids = me.getIdSelections();
+    if(ids == null || ids.length == 0) {
       toastr.info("Bạn cần chọn bản ghi để thực hiện thao tác này.");
     } else {
 
       let deleteManyByIndexes = () => {
         me.$table.bootstrapTable('remove', {
-          field: 'index',
-          values: indexes
+          field: 'id',
+          values: ids
         });
-        toastr.success(`Xóa thành công ${indexes.length} bản ghi.`);
+        toastr.success(`Xóa thành công ${ids.length} bản ghi.`);
       }
-      showPopupDanger(Constants.PopupHeaderDeleteRecord, `<span>Bạn có chắc chắn muốn xóa <b>${indexes.length} bản ghi đã chọn</b> hay không?</span>`, deleteManyByIndexes, "danger");
+      showPopupDanger(Constants.PopupHeaderDeleteRecord, `<span>Bạn có chắc chắn muốn xóa <b>${ids.length} bản ghi đã chọn</b> hay không?</span>`, deleteManyByIndexes, "danger");
     }
   }
 
@@ -279,14 +356,10 @@ class ManageInfoAsset extends FormBase {
     me.$dialog.find(".text-header").html("Chỉnh sửa thông tin tài sản");
     me.$dialog.show();
 
-    // me.$dialog.find("[data-control=autocomplete]").each((index, item) => {
-    //   let source = $(item).data("source");
-    //   $(item).autocomplete(me[source]);
-    // });
-
-    me.$dialog.find(".dialog").data("formType", "edit");
-
     me.recordRow = dataRow;
+    me.$dialog.find(".dialog").data("formType", "edit");
+    me.$dialog.find(".dialog").data("id", me.recordRow.id);
+
     me.$dialog.find("[data-field]").each((index, el) => {
       let field = $(el).data("field");
       $(el).val(dataRow[field]);
@@ -348,7 +421,7 @@ class ManageInfoAsset extends FormBase {
   generateNewId() {
     let me = this;
     let data = me.$table.getData();
-    return Math.max(...data.map(x => x.id) + 1);
+    return Math.max(...data.map(x => x.id)) + 1;
   }
 
   /**

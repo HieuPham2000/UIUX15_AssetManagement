@@ -83,6 +83,9 @@ class BaseDialog extends FormBase {
 
   hide() {
     let me = this;
+    $(me.selector).data('validator').resetForm();
+    $(me.selector).data("formType", null);
+    $(me.selector).data("id", null);
     $(me.selector).parent().hide(); 
   }
 
