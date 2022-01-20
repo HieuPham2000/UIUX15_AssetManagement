@@ -1,12 +1,646 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Quản lý khấu hao tài sản | Quản lý tài sản</title>
+
+
+  <link rel="stylesheet" href="../../css/views/all.css">
+  <link rel="stylesheet" href="../../lib/jquery-ui-1.12.1/jquery-ui.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css">
+  <link rel="stylesheet" href="../../css/views/manage-depreciation-asset.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
 </head>
-<body>
-  
+
+<body class="hold-transition sidebar-mini layout-fixed body">
+  <div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="index.html" class="nav-link">Trang chủ</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="mailto:hieu.pt183535@sis.hust.edu.vn" class="nav-link">Liên hệ</a>
+        </li>
+      </ul>
+
+      <!-- Right navbar links -->
+      <ul class="navbar-nav ml-auto">
+        <!-- Navbar Search -->
+        <li class="nav-item">
+          <a class="nav-link dev-feat" href="#" role="button">
+            <i class="fas fa-search"></i>
+          </a>
+        </li>
+
+        <!-- Notifications Dropdown Menu -->
+        <li class="nav-item dropdown">
+          <a class="nav-link" data-toggle="dropdown" href="#">
+            <i class="far fa-bell"></i>
+            <span class="badge badge-warning navbar-badge">7</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <span class="dropdown-item dropdown-header">7 thông báo</span>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item dev-feat">
+              <i class="fas fa-envelope mr-2"></i> 4 tin nhắn mới
+              <span class="float-right text-muted text-sm">3 phút trước</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item dev-feat">
+              <i class="fas fa-file mr-2"></i> 3 báo cáo mới
+              <span class="float-right text-muted text-sm">2 ngày trước</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item dropdown-footer dev-feat">Xem tất cả thông báo</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex dev-feat" href="#" role="button" style="align-items: center;">
+            <div class="user-panel" style="overflow: unset;">
+              <div class="image">
+                <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+              </div>
+            </div>
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-link">
+        <!-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+          style="opacity: .8"> -->
+        <span class="brand-text font-weight-light">DX workplace</span>
+      </a>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+            <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          </div>
+          <div class="info">
+            <a href="#" class="d-block">Nguyễn Văn Thông</a>
+            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2" style="padding-bottom: 50px;">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-home"></i>
+                <p>
+                  Trang chủ
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-newspaper"></i>
+                <p>
+                  Bảng tin cá nhân
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-newspaper"></i>
+                <p>
+                  Bảng tin đơn vị
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-briefcase"></i>
+                <p>
+                  Công việc đơn vị
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Tổng quan công việc đơn vị</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Danh sách công việc đơn vị</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-briefcase"></i>
+                <p>
+                  Công việc cá nhân
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Tổng quan công việc Cá nhân</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Danh sách công việc Cá nhân</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  KPI đơn vị
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Tổng quan KPI đơn vị</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Khởi tạo KPI đơn vị</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Quản lý KPI đơn vị</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Phân tích tính hợp lý trong thiết lập KPI đơn vị</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Tổng quan KPI nhân viên</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Đánh giá KPI nhân viên</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  KPI cá nhân
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Tổng quan KPI cá nhân</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Khởi tạo KPI cá nhân</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Quản lý KPI cá nhân</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item menu-open">
+              <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-laptop-house"></i>
+                <p>
+                  Quản lý tài sản
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../dashboard-asset/index.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Tổng quan quản lý tài sản</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="../manage-info-asset/index.html" class="nav-link active">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Quản lý thông tin tài sản</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link dev-feat">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Quản lý khấu hao tài sản</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="../manage-maintainance-asset/index.html" class="nav-link dev-feat">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Quản lý bảo trì - sửa chữa</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="../manage-incident-asset/index.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Quản lý sự cố tài sản</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="../manage-asset-use-request/index.html" class="nav-link dev-feat">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Quản lý đăng ký sử dụng</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="../manage-request-buy-asset/index.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Quản lý đề nghị mua sắm</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link dev-feat">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Quản lý loại tài sản</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link dev-feat">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Tài sản sử dụng</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="../manage-asset/index.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Tài sản quản lý</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link dev-feat">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Đăng ký sử dụng thiết bị</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link dev-feat">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Đăng ký mua sắm thiết bị</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-info-circle"></i>
+                <p>
+                  Hướng dẫn sử dụng
+                </p>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+
+    <div id="dialog-overlay" class="overlay" style="display: none">
+      <form id="dialog" class="dialog">
+        <div class="dialog-header">
+          <div class="text-header">Chỉnh sửa thông tin tài sản</div>
+          <i class="dialog-close pointer fas fa-times"></i>
+        </div>
+        <div class="dialog-body">
+
+          <div class="dialog-row">
+            
+            <!-- <div class="input-control input-control-col form-group col-6">
+              <label>Date masks:</label>
+              <input id="datemask" type="text" class="form-control text-input" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-datetimepicker>
+            </div> -->
+
+            <div class="input-control input-control-col form-group col-6">
+              <label for="txtCodeEdit">Mã tài sản <span class="required">(*)</span></label>
+              <input data-focus="first" id="txtCodeEdit" name="txtCodeEdit" tabindex="1" data-field="code" placeholder="Mã tài sản" class="form-control text-input" type="text" required maxlength="20" validateCodeUnique>
+            </div>
+            <div class="input-control input-control-col form-group col-6">
+              <label for="cboStatusEdit">Trạng thái <span class="required">(*)</span></label>
+              <input id="cboStatusEdit" name="cboStatusEdit" tabindex="4" data-control="autocomplete" data-field="status" data-source="cboStatusSource"
+                placeholder="Trạng thái" class="form-control text-input" type="text" required maxlength="100">
+            </div>
+          </div>
+
+          <div class="dialog-row">
+            <div class="input-control input-control-col form-group col-6">
+              <label for="txtNameEdit">Tên tài sản <span class="required">(*)</span></label>
+              <input id="txtNameEdit" name="txtNameEdit" tabindex="2" data-field="name" placeholder="Tên tài sản" class="form-control text-input" type="text" required maxlength="100">
+            </div>
+            <div class="input-control input-control-col form-group col-6">
+              <label for="txtPersonManageEdit">Người quản lý</label>
+              <input id="txtPersonManageEdit" name="txtPersonManageEdit" tabindex="5" data-field="personManage" placeholder="Người quản lý" class="form-control text-input" type="text" maxlength="100">
+            </div>
+            
+
+          </div>
+
+          <div class="dialog-row">
+            <div class="input-control input-control-col form-group col-6">
+              <label for="cboGroupEdit">Nhóm tài sản <span class="required">(*)</span></label>
+              <input id="cboGroupEdit" name="cboGroupEdit" tabindex="3" data-control="autocomplete" data-field="group" data-source="cboGroupSource"
+                placeholder="Nhóm tài sản" class="form-control text-input" type="text" required maxlength="100">
+            </div>
+            <div class="input-control input-control-col form-group col-6">
+              <label for="txtPersonUseEdit">Người sử dụng</label>
+              <input id="txtPersonUseEdit" name="txtPersonUseEdit" tabindex="6" data-field="personUse" placeholder="Người sử dụng" class="form-control text-input" type="text" maxlength="100">
+            </div>
+          </div>
+
+          <div class="dialog-row">
+            <div class="input-control input-control-col form-group col-12">
+              <label for="txtDescriptionEdit">Mô tả</label>
+              <textarea id="txtDescriptionEdit" name="txtDescriptionEdit" tabindex="7" data-field="description" rows="3" placeholder="Mô tả" class="form-control text-input"
+                type="text" maxlength="255"></textarea>
+            </div>
+          </div>
+
+        </div>
+        <div class="dialog-footer">
+          <button data-command="Cancel" type="button" class="m-btn btn btn-outline-secondary" tabindex="9" data-focus="last">Hủy</button>
+          <div class="my-flex-space"></div>
+          <button data-command="Save" type="button" class="m-btn btn btn-success" tabindex="8">Lưu</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="msg-popup-overlay" class="overlay" style="display: none">
+      <div class="popup">
+        <div class="popup-header">
+          <div class="text-header">Xóa bản ghi</div>
+          <i class="popup-close pointer fas fa-times"></i>
+        </div>
+        <div class="popup-body">
+          <div class="popup-body-icon icon-danger"></div>
+          <div class="popup-body-content">Bạn có chắc muốn xóa bản ghi này không?</div>
+        </div>
+        <div class="popup-footer">
+          <button data-command="Cancel" type="button" class="m-btn btn btn-outline-secondary">Hủy</button>
+          <div class="my-flex-space"></div>
+          <button data-command="Save" type="button" class="m-btn btn">Xóa</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0">Quản lý thông tin tài sản</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                <li class="breadcrumb-item active">Quản lý thông tin tài sản</li>
+              </ol>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+
+
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <!-- Main row -->
+          <div class="row  my-row-container">
+            <div class="col-12 col-sm-12 my-flex-1-column-container">
+              <div class="card my-card">
+
+                <div class="content-toolbar">
+                  <div class="row row-item">
+                      <div class="input-control form-group">
+                        <label for="txtSearchCode">Mã tài sản</label>
+                        <input id="txtSearchCode" data-search-field="code" placeholder="Mã tài sản"
+                          class="form-control text-input" type="text">
+                      </div>
+                      <div class="input-control form-group">
+                        <label for="txtSearchName">Tên tài sản</label>
+                        <input id="txtSearchName" data-search-field="name" placeholder="Tên tài sản"
+                          class="form-control text-input" type="text">
+                      </div>
+                  </div>
+
+                  <div class="row row-item">
+                      <div class="input-control form-group">
+                        <label for="cboGroup">Nhóm</label>
+                        <input id="cboGroup" data-control="autocomplete" data-source="cboGroupSource"
+                          data-search-field="group" placeholder="Nhóm tài sản" class="form-control text-input"
+                          type="text">
+                      </div>
+                      <div class="input-control form-group">
+                        <label for="cboStatus">Trạng thái</label>
+                        <input id="cboStatus" data-control="autocomplete" data-source="cboStatusSource"
+                          data-search-field="status" placeholder="Trạng thái" class="form-control text-input" type="text">
+                      </div>
+                      <button data-control="searchControl" type="button" class="m-btn btn btn-success" style="margin-left: 32px;">Lọc</button>
+                      <div class="my-flex-space"></div>
+                      <button type="button" id="btnAddAsset" class="m-btn btn btn-success" title="Thêm tài sản">Thêm tài sản</button>
+                    </div>
+
+                </div>
+                <div id="toolbar">
+                  <div class="input-control form-group">
+                    <label for="selectExportDataType">Chế độ xuất dữ liệu</label>
+                    <select id="selectExportDataType">
+                      <option value="selected">Dữ liệu được chọn</option>
+                      <option value="basic">Dữ liệu hiện tại</option>
+                      <option value="all" selected>Toàn bộ dữ liệu</option>
+                    </select>
+                  </div>
+                  
+                </div>
+                <div class="content-table">
+                  <table 
+                    id="table" 
+                    data-height="400"
+                    data-toggle="table"
+                    data-unique-id="code"
+                    data-toolbar="#toolbar"
+                    data-search="true"
+                    data-show-refresh="true"
+                    data-show-columns="true"
+                    data-show-columns-search="true"
+                    data-show-columns-toggle-all="true"
+                    data-show-export="true"
+                    data-export-data-type="all"
+                    data-export-types="['json', 'xml', 'csv', 'txt', 'doc', 'excel', 'xlsx']"
+                    data-click-to-select="true"
+                    data-minimum-count-columns="2"
+                    data-show-pagination-switch="true"
+                    
+                    data-filter-toolbar-switch="true"
+
+                    data-id-field="index"
+                    data-pagination="true"
+                    data-pagination-loop="false"
+                    data-page-size="10"
+                    data-page-list="[5, 10, 25, 50, all]">
+                    
+                    <thead>
+                      <tr>
+                        <th data-width="50" data-checkbox="true" data-force-hide="true"></th>
+                        <th data-formatter="renderIndexFormatter" data-width="100" data-sortable="true">STT</th>
+                        <th data-field="code" data-sortable="true">Mã tài sản</th>
+                        <th data-field="name" data-sortable="true">Tên tài sản</th>
+                        <th data-field="group" data-sortable="true">Nhóm tài sản</th>
+                        <th data-field="status" data-sortable="true" >Trạng thái</th>
+                        <th data-field="personManage" data-sortable="true">Người quản lý</th>
+                        <th data-field="personUse" data-sortable="true">Người sử dụng</th>
+                        <th data-field="_action" data-formatter="renderActionBtn" data-width="80" data-force-hide="true">Hành động</th>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+                <!-- /.card -->
+              </div>
+            </div>
+          </div>
+          <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+      <footer class="main-footer">
+        <strong>Copyright &copy; 2021-2022 <a href="#">UIUX15</a></strong>
+        <div class="float-right d-none d-sm-inline-block">
+          <b>Phiên bản</b> 1.0.0
+        </div>
+      </footer>
+    </div>
+    <!-- /.content-wrapper -->
+
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- jQuery -->
+  <script src="../../plugins/jquery/jquery.min.js"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
+  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+  <script>
+    $.widget.bridge('uibutton', $.ui.button)
+  </script>
+  <!-- Bootstrap 4 -->
+  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- ChartJS -->
+  <script src="../../plugins/chart.js/Chart.min.js"></script>
+  <!-- Sparkline -->
+  <script src="../../plugins/sparklines/sparkline.js"></script>
+  <!-- JQVMap -->
+  <script src="../../plugins/jqvmap/jquery.vmap.min.js"></script>
+  <script src="../../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+  <!-- jQuery Knob Chart -->
+  <script src="../../plugins/jquery-knob/jquery.knob.min.js"></script>
+
+  <!-- Summernote -->
+  <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
+  <!-- SweetAlert2 -->
+  <script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
+  <!-- Toastr -->
+  <script src="../../plugins/toastr/toastr.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="../../dist/js/adminlte.js"></script>
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <script src="../../dist/js/pages/dashboard.js"></script>
+
+  <!--Export table (SheetJS) in XLSX (Excel 2007+ XML format) format-->
+  <script src="https://cdn.bootcss.com/xlsx/0.14.2/xlsx.core.min.js"></script>
+  <!--Support for IE includes es6-promise before html2canvas-->
+  <script src="https://cdn.bootcss.com/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
+  <script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+
+  <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+  <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+  <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/extensions/export/bootstrap-table-export.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
+  <!-- InputMask -->
+  <script src="../../plugins/moment/moment.min.js"></script>
+  <script src="../../plugins/inputmask/jquery.inputmask.min.js"></script>
+  <!-- date-range-picker -->
+  <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
+  <!-- Select2 -->
+  <script src="../../plugins/select2/js/select2.full.min.js"></script>  
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
+  <script src="../../js/bootstrap-table-vi-VN.js"></script>
+  <script src="../../js/popup.js"></script>
+  <script src="../../js/constant.js"></script>
+
+
+  <script src="../../js/form-base.js"></script>
+  <script src="../../data/manage-info-asset-data.js"></script>
+  <script src="../../js/views/manage-depreciation-asset.js"></script>
+  <script src="../../js/dialog.js"></script>
+  <script src="../../js/toggle-column.js"></script>
+  <script src="../../js/views/main.js"></script>
+
 </body>
+
 </html>
